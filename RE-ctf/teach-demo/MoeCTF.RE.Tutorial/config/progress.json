@@ -1,0 +1,14 @@
+{
+  "ActiveCourseId": "chall1",
+  "Courses": {
+    "chall1": {
+      "CourseVersion": "1.0.2",
+      "FlowFingerprint": "8cb96e947b11bc0d8c3746b9674ba5e1cbec87ad89a3db8e7a6837514c1dfb88",
+      "StageId": "chall1.die",
+      "StageIndex": 0,
+      "ClearedStages": []
+    }
+  },
+  "StageIndex": 0,
+  "ClearedStages": []
+}

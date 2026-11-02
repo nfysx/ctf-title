@@ -1,0 +1,12 @@
+# 动态 flag 注入：
+#   平台/运维执行  FLAG=flag{xxx} docker compose up -d  即可注入；
+#   不设则程序首次请求自动生成随机 flag（容器内 /tmp/.web_ctf_flag）
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+    - 8087:80
+    environment:
+    - FLAG=${FLAG:-}
+    - TZ=Asia/Shanghai

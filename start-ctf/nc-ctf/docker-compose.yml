@@ -1,0 +1,9 @@
+# 动态 flag 注入：FLAG=flag{xxx} docker compose up -d
+services:
+  nc:
+    build: .
+    ports:
+    - 8096:1337
+    environment:
+    - FLAG=${FLAG:-}
+    - TZ=Asia/Shanghai

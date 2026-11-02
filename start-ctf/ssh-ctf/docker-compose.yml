@@ -1,0 +1,9 @@
+# flag 注入：FLAG=flag{xxx} docker compose up -d；不注入则用 src/flag.txt 里的静态值
+services:
+  ssh:
+    build: .
+    ports:
+    - 8098:2222
+    environment:
+    - FLAG=${FLAG:-}
+    - TZ=Asia/Shanghai

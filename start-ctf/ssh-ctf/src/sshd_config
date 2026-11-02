@@ -1,0 +1,19 @@
+# 端口必须是高位：平台 restricted 模式会丢 CAP_NET_BIND_SERVICE，绑不了 22
+Port 2222
+ListenAddress 0.0.0.0
+
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+
+PermitRootLogin no
+PasswordAuthentication yes
+KbdInteractiveAuthentication no
+AllowUsers xaiu
+
+PrintMotd yes
+X11Forwarding no
+AllowTcpForwarding no
+PermitTunnel no
+
+Subsystem sftp internal-sftp
+LogLevel INFO

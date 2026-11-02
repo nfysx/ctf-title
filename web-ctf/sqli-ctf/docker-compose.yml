@@ -1,0 +1,28 @@
+# 动态 flag 注入：
+#   平台/运维执行  FLAG=flag{xxx} docker compose up -d  即可注入；
+#   不设则程序首次请求自动生成随机 flag（容器内 /tmp/.web_ctf_flag）
+version: '3'
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+    - MARIADB_ROOT_PASSWORD=root_in_ctf
+    - MARIADB_DATABASE=ctf
+    - MARIADB_USER=ctf
+    - MARIADB_PASSWORD=ctf123
+    - TZ=Asia/Shanghai
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+  web:
+    build: .
+    ports:
+    - 8084:80
+    depends_on:
+    - db
+    environment:
+    - FLAG=${FLAG:-}
+    - DB_HOST=db
+    - DB_NAME=ctf
+    - DB_USER=ctf
+    - DB_PASS=ctf123
+    - TZ=Asia/Shanghai

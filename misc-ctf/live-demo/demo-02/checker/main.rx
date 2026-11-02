@@ -1,0 +1,15 @@
+// checker/main.rx · 现场演示 demo-02（file 一句话拆穿）· 可选
+// 演示题通常不上平台；如果要放上去，用这个静态 flag 版本即可。
+
+const FLAG = "flag{f1l3_n3v3r_l13s}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None));
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

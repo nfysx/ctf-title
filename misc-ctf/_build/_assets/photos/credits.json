@@ -1,0 +1,120 @@
+{
+  "p_greatwall.jpg": {
+    "note": "慕田峪长城俯拍",
+    "title": "File:67054-The-Great-Wall, Mutianyu.jpg",
+    "license": "CC BY 2.0",
+    "artist": "xiquinhosilva",
+    "gps": null
+  },
+  "p_xihu_pano.jpg": {
+    "note": "西湖全景航拍",
+    "title": "File:Aerial panorama of West Lake and its surrounding mountains. December 2023.jpg",
+    "license": "CC BY 4.0",
+    "artist": "Wanderingchina",
+    "gps": null
+  },
+  "p_gugong_turtle.jpg": {
+    "note": "故宫铜龟",
+    "title": "File:Beijing China Forbidden-City-03.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "CEphoto, Uwe Aranas",
+    "gps": null
+  },
+  "p_yangshuo.jpg": {
+    "note": "阳朔村庄",
+    "title": "File:China - Yangshuo 15 - villages and fields fill between the peak-filled landscape (140904370).jpg",
+    "license": "CC BY 2.0",
+    "artist": "McKay Savage from London, UK",
+    "gps": null
+  },
+  "p_karst.jpg": {
+    "note": "喀斯特山水",
+    "title": "File:Ethereal Karst Landscape In China (230687735).jpeg",
+    "license": "CC BY 3.0",
+    "artist": "Vyacheslav Argenberg Vascoplanet Com",
+    "gps": null
+  },
+  "p_gugong_turtle2.jpg": {
+    "note": "故宫铜龟特写",
+    "title": "File:Forbidden City Beijing (3020011206).jpg",
+    "license": "CC BY 2.0",
+    "artist": "Dave Proffer",
+    "gps": null
+  },
+  "p_greatwall_cc0.jpg": {
+    "note": "长城(CC0)",
+    "title": "File:Great Wall of China July 2006.JPG",
+    "license": "CC0",
+    "artist": "Velatrix",
+    "gps": null
+  },
+  "p_liriver.jpg": {
+    "note": "漓江游船",
+    "title": "File:Guilin 2006 19-03.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "G41rn8",
+    "gps": null
+  },
+  "p_guilin.jpg": {
+    "note": "桂林山水",
+    "title": "File:Guilin 2006 19-14.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "G41rn8",
+    "gps": null
+  },
+  "p_mutianyu.jpg": {
+    "note": "慕田峪长城垛口",
+    "title": "File:Mutianyu Great Wall (6222519140).jpg",
+    "license": "CC BY 2.0",
+    "artist": "Arian Zwegers",
+    "gps": null
+  },
+  "p_garden_shizilin.jpg": {
+    "note": "狮子林",
+    "title": "File:Lion Forest Garden 3.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Chinatravelsavvy",
+    "gps": null
+  },
+  "p_garden_wangshi.jpg": {
+    "note": "网师园",
+    "title": "File:Master of Nets Garden 1.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Chinatravelsavvy",
+    "gps": null
+  },
+  "p_garden_wangshi2.jpg": {
+    "note": "网师园二",
+    "title": "File:Master of Nets Garden 2.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Chinatravelsavvy",
+    "gps": null
+  },
+  "p_pearl_gps.jpg": {
+    "note": "东方明珠(原图带GPS)",
+    "title": "File:Oriental Pearl Tower in Shanghai.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Dmitry A. Mottl",
+    "gps": [
+      "31.240412",
+      "121.496930"
+    ]
+  },
+  "p_zjj_gps.jpg": {
+    "note": "张家界国家森林公园",
+    "title": "File:Zhangjiajie National Forest Park.jpg",
+    "license": "CC BY 2.0",
+    "artist": "Kuruman from Tokyo, Japan",
+    "gps": [
+      "29.332338",
+      "110.426066"
+    ]
+  },
+  "user_ctf_meme.png": {
+    "note": "用户提供的动漫截图（字幕「老实打CTF，很枯燥吧」）",
+    "title": "用户提供",
+    "license": "用户提供（版权自行确认）",
+    "artist": "-",
+    "gps": null
+  }
+}

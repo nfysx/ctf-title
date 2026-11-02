@@ -1,0 +1,14 @@
+
+User-agent: *
+Allow: /
+Disallow: /config
+Disallow: /write
+Disallow: /about-edit
+Disallow: /projects-edit
+Disallow: /project/edit
+Disallow: /login
+Sitemap: https://nfysx.ccwu.cc/sitemap-index.xml
+
+# 后台和备份别被搜到
+Disallow: /admin_9k2x/
+Disallow: /backup/

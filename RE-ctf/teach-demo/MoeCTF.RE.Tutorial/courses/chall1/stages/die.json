@@ -1,0 +1,149 @@
+{
+  "id": "chall1.die",
+  "order": 0,
+  "titleKey": "chall1.die.title",
+  "goalKey": "chall1.die.goal",
+  "answerKey": "chall1.answer.external_submit_only",
+  "completionMode": "guided",
+  "targets": [
+    "chall1"
+  ],
+  "tools": [
+    "die"
+  ],
+  "guideMode": "forced",
+  "deviations": [],
+  "steps": [
+    {
+      "id": "open_in_die",
+      "textKey": "chall1.die.open.title",
+      "bodyKey": "chall1.die.open.body",
+      "action": "none",
+      "tool": "die",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:die",
+          "adapter": "die"
+        },
+        "locators": [
+          {
+            "strategy": "window",
+            "scope": "process",
+            "process": "tool:die",
+            "adapter": "die",
+            "titleContains": [
+              "Detect It Easy"
+            ],
+            "fallbackToWindow": true,
+            "timeoutMs": 500
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 6,
+          "gap": 14,
+          "maxWidth": 440
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "read_die_result",
+      "textKey": "chall1.die.result.title",
+      "bodyKey": "chall1.die.result.body",
+      "image": "courses/chall1/assets/media/01-die-analysis.png",
+      "action": "none",
+      "tool": "die",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:die",
+          "adapter": "die",
+          "titleContains": [
+            "Detect It Easy"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:die",
+            "adapter": "die",
+            "role": "analysis_summary",
+            "titleContains": [
+              "Detect It Easy"
+            ],
+            "documentContains": [
+              "chall1"
+            ],
+            "contentContains": [
+              "ELF64",
+              "AMD64",
+              "C/C++"
+            ],
+            "requireAllNameContains": true,
+            "contentMode": "evidence",
+            "fallbackToWindow": false,
+            "maxNodes": 1800,
+            "timeoutMs": 800
+          },
+          {
+            "strategy": "window",
+            "scope": "process",
+            "process": "tool:die",
+            "adapter": "die",
+            "titleContains": [
+              "Detect It Easy"
+            ],
+            "fallbackToWindow": true,
+            "timeoutMs": 500
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "center",
+          "padding": 8,
+          "gap": 16,
+          "maxWidth": 460
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      },
+      "trigger": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:die",
+          "adapter": "die",
+          "role": "analysis_summary",
+          "titleContains": [
+            "Detect It Easy"
+          ],
+          "documentContains": [
+            "chall1"
+          ],
+          "contentContains": [
+            "ELF64",
+            "AMD64",
+            "C/C++"
+          ],
+          "requireAllNameContains": true,
+          "contentMode": "evidence",
+          "fallbackToWindow": false,
+          "maxNodes": 1800,
+          "timeoutMs": 800
+        }
+      }
+    }
+  ]
+}

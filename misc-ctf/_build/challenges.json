@@ -1,0 +1,395 @@
+{
+  "enc-chain-ctf": {
+    "no": 3,
+    "flag": "flag{3nc0d1ng_1s_n0t_3ncrypt10n}",
+    "title": "编码接力",
+    "difficulty": 1,
+    "points": 100,
+    "tags": [
+      "编码",
+      "base64",
+      "十六进制",
+      "ROT13"
+    ],
+    "dirs": [
+      "files/readme.txt"
+    ],
+    "path": "enc-chain-ctf/Level3"
+  },
+  "file-header-ctf": {
+    "no": 5,
+    "flag": "flag{h3ader_1s_th3_truth}",
+    "title": "被抹掉的文件头",
+    "difficulty": 2,
+    "points": 150,
+    "tags": [
+      "文件头",
+      "魔数",
+      "十六进制"
+    ],
+    "dirs": [
+      "files/logo.png"
+    ],
+    "path": "file-header-ctf/Level2"
+  },
+  "append-zip-ctf": {
+    "no": 10,
+    "flag": "flag{4ppend3d_d4t4_4fter_1end}",
+    "title": "图片里有个压缩包",
+    "difficulty": 2,
+    "points": 150,
+    "tags": [
+      "附加数据",
+      "binwalk",
+      "PNG 结构"
+    ],
+    "dirs": [
+      "files/cover.png"
+    ]
+  },
+  "fake-zip-ctf": {
+    "no": 7,
+    "flag": "flag{f4k3_3ncrypt10n_b1t}",
+    "title": "没有密码的加密包",
+    "difficulty": 2,
+    "points": 150,
+    "tags": [
+      "伪加密",
+      "ZIP 结构",
+      "标志位"
+    ],
+    "dirs": [
+      "files/secret.zip"
+    ],
+    "path": "fake-zip-ctf/Level2"
+  },
+  "lsb-stego-ctf": {
+    "no": 9,
+    "flag": "flag{lsb_1s_1n_th3_l4st_b1t}",
+    "title": "最低有效位",
+    "difficulty": 2,
+    "points": 150,
+    "tags": [
+      "LSB",
+      "图片隐写"
+    ],
+    "dirs": [
+      "files/photo.png"
+    ],
+    "path": "lsb-stego-ctf/Level2"
+  },
+  "exif-meta-ctf": {
+    "no": 11,
+    "flag": "flag{m3t4d4t4_t4lks}",
+    "title": "照片会说话",
+    "difficulty": 1,
+    "points": 120,
+    "tags": [
+      "EXIF",
+      "元数据",
+      "base64"
+    ],
+    "dirs": [
+      "files/photo.jpg"
+    ]
+  },
+  "traffic-ctf": {
+    "no": 15,
+    "flag": "flag{pcap_n3v3r_l13s}",
+    "title": "流量里的那一次请求",
+    "difficulty": 2,
+    "points": 200,
+    "tags": [
+      "流量分析",
+      "pcap",
+      "base64"
+    ],
+    "dirs": [
+      "files/capture.pcap"
+    ],
+    "path": "traffic-ctf/Level1"
+  },
+  "geo-hongyadong-ctf": {
+    "no": 21,
+    "flag": "flag{chongqing_hongyadong_20241009_1325}",
+    "title": "这张游客照在哪拍的",
+    "difficulty": 1,
+    "points": 150,
+    "tags": [
+      "EXIF",
+      "GPS",
+      "时间换算",
+      "地标识别"
+    ],
+    "dirs": [
+      "files/photo.jpg",
+      "files/readme.txt"
+    ],
+    "group": "starwalk-series",
+    "path": "Level3"
+  },
+  "geo-nanjinglu-ctf": {
+    "no": 22,
+    "flag": "flag{shanghai_nanjingdonglu_yongan}",
+    "title": "三层线索拼出一条街",
+    "difficulty": 3,
+    "points": 250,
+    "tags": [
+      "信息搜集",
+      "招牌识别",
+      "地图比对"
+    ],
+    "dirs": [
+      "files/photo.jpg",
+      "files/readme.txt"
+    ],
+    "group": "starwalk-series",
+    "path": "Level4"
+  },
+  "exif-gps-ctf": {
+    "no": 20,
+    "flag": "flag{hunan_zhangjiajie}",
+    "title": "五张照片，一张带坐标",
+    "difficulty": 2,
+    "points": 200,
+    "tags": [
+      "EXIF",
+      "GPS",
+      "批量查询",
+      "景区定位"
+    ],
+    "dirs": [
+      "files/photos/IMG_2031.jpg",
+      "files/photos/IMG_2032.jpg",
+      "files/photos/IMG_2033.jpg",
+      "files/photos/IMG_2034.jpg",
+      "files/photos/IMG_2035.jpg",
+      "files/readme.txt"
+    ],
+    "group": "starwalk-series",
+    "path": "Level2"
+  },
+  "exif-thumb-ctf": {
+    "no": 12,
+    "flag": "flag{thumbn41l_n3v3r_l13s}",
+    "title": "被打码的照片",
+    "difficulty": 2,
+    "points": 180,
+    "tags": [
+      "EXIF",
+      "缩略图",
+      "IFD1"
+    ],
+    "dirs": [
+      "files/photo.jpg"
+    ]
+  },
+  "exif-erase-ctf": {
+    "no": 13,
+    "flag": "flag{3r4s3_3xif_4ft3r_dump}",
+    "title": "抹掉之前先备份",
+    "difficulty": 3,
+    "points": 220,
+    "tags": [
+      "EXIF",
+      "抹除",
+      "APP1 段",
+      "对比"
+    ],
+    "dirs": [
+      "files/before.jpg",
+      "files/after.jpg"
+    ]
+  },
+  "png-text-ctf": {
+    "no": 14,
+    "flag": "flag{t3xt_chunk_1s_4_th1ng}",
+    "title": "注释里的悄悄话",
+    "difficulty": 2,
+    "points": 180,
+    "tags": [
+      "PNG 结构",
+      "tEXt 注释块",
+      "strings"
+    ],
+    "dirs": [
+      "files/photo.png"
+    ]
+  },
+  "exif-trio-ctf": {
+    "no": 19,
+    "flag": "flag{beijing_xiaomi_0926}",
+    "title": "属性三件套",
+    "difficulty": 1,
+    "points": 100,
+    "tags": [
+      "EXIF",
+      "GPS",
+      "型号",
+      "时间换算"
+    ],
+    "dirs": [
+      "files/photo.jpg",
+      "files/readme.txt"
+    ],
+    "group": "starwalk-series",
+    "path": "Level1"
+  },
+  "route-trace-ctf": {
+    "no": 23,
+    "flag": "flag{shanghai_zhangjiajie_chongqing}",
+    "title": "三张照片的路线",
+    "difficulty": 3,
+    "points": 250,
+    "tags": [
+      "EXIF",
+      "GPS",
+      "时间排序",
+      "多步推理"
+    ],
+    "dirs": [
+      "files/IMG_1001.jpg",
+      "files/IMG_1002.jpg",
+      "files/IMG_1003.jpg",
+      "files/readme.txt"
+    ],
+    "group": "starwalk-series",
+    "path": "Level5"
+  },
+  "b64-only-ctf": {
+    "path": "enc-chain-ctf/Level1",
+    "title": "只有 base64",
+    "difficulty": 1,
+    "points": 80,
+    "tags": [
+      "base64",
+      "编码"
+    ],
+    "dirs": [
+      "files/readme.txt"
+    ],
+    "flag": "flag{b4s364_15_ju57_4_5t3p}",
+    "group": "",
+    "no": 1
+  },
+  "hex-only-ctf": {
+    "path": "enc-chain-ctf/Level2",
+    "title": "只有十六进制",
+    "difficulty": 1,
+    "points": 80,
+    "tags": [
+      "十六进制",
+      "编码"
+    ],
+    "dirs": [
+      "files/readme.txt"
+    ],
+    "flag": "flag{h3x_15_e4sy_t00}",
+    "group": "",
+    "no": 2
+  },
+  "ext-lie-ctf": {
+    "path": "file-header-ctf/Level1",
+    "title": "改个后缀就露馅",
+    "difficulty": 1,
+    "points": 80,
+    "tags": [
+      "文件类型",
+      "魔数",
+      "改后缀"
+    ],
+    "dirs": [
+      "files/作业.docx"
+    ],
+    "flag": "flag{r3n4m3_1t_4nd_5e3}",
+    "group": "",
+    "no": 4
+  },
+  "zip-comment-ctf": {
+    "path": "fake-zip-ctf/Level1",
+    "title": "压缩包的备注",
+    "difficulty": 1,
+    "points": 80,
+    "tags": [
+      "ZIP 结构",
+      "注释字段"
+    ],
+    "dirs": [
+      "files/handin.zip"
+    ],
+    "flag": "flag{c0mm3n7_15_4_f13ld}",
+    "group": "",
+    "no": 6
+  },
+  "lsb-easy-ctf": {
+    "path": "lsb-stego-ctf/Level1",
+    "title": "红色通道的悄悄话",
+    "difficulty": 1,
+    "points": 100,
+    "tags": [
+      "LSB",
+      "单通道",
+      "图片隐写"
+    ],
+    "dirs": [
+      "files/photo.png",
+      "files/readme.txt"
+    ],
+    "flag": "flag{0n3_ch4nn3l_15_3n0ugh}",
+    "group": "",
+    "no": 8
+  },
+  "traffic-chunked-ctf": {
+    "path": "traffic-ctf/Level2",
+    "title": "分块传输的日志",
+    "difficulty": 2,
+    "points": 220,
+    "tags": [
+      "HTTP",
+      "chunked",
+      "TCP 重组"
+    ],
+    "dirs": [
+      "files/capture.pcap"
+    ],
+    "flag": "flag{chunk3d_4nd_r34553mbl3d}",
+    "group": "",
+    "no": 16
+  },
+  "traffic-dns-ctf": {
+    "path": "traffic-ctf/Level3",
+    "title": "DNS 里的悄悄话",
+    "difficulty": 3,
+    "points": 260,
+    "tags": [
+      "DNS",
+      "隧道",
+      "base32",
+      "过滤"
+    ],
+    "dirs": [
+      "files/capture.pcap"
+    ],
+    "flag": "flag{dn5_1s_4_5n34ky_ch4nn3l}",
+    "group": "",
+    "no": 17
+  },
+  "traffic-proto-ctf": {
+    "path": "traffic-ctf/Level4",
+    "title": "自己逆的私有协议",
+    "difficulty": 3,
+    "points": 300,
+    "tags": [
+      "协议逆向",
+      "帧结构",
+      "CRC",
+      "XOR"
+    ],
+    "dirs": [
+      "files/capture.pcap"
+    ],
+    "flag": "flag{r3v3r53_th3_fr4m3}",
+    "group": "",
+    "no": 18
+  }
+}

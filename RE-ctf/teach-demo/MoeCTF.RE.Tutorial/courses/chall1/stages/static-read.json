@@ -1,0 +1,546 @@
+{
+  "id": "chall1.static-read",
+  "order": 2,
+  "titleKey": "chall1.static.title",
+  "goalKey": "chall1.static.goal",
+  "answerKey": "chall1.answer.external_submit_only",
+  "completionMode": "external_submit",
+  "targets": [
+    "chall1"
+  ],
+  "tools": [
+    "ida"
+  ],
+  "guideMode": "forced",
+  "deviations": [
+    {
+      "id": "ida_xrefs",
+      "textKey": "chall1.static.deviation.xrefs",
+      "priority": 125,
+      "when": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "xrefs",
+          "titleContains": [
+            "xrefs to format"
+          ],
+          "contentContains": [
+            "main+7F",
+            "Input flag:"
+          ],
+          "requireAllNameContains": true,
+          "fallbackToWindow": false,
+          "maxNodes": 900,
+          "timeoutMs": 550
+        }
+      },
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "xrefs to format"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "xrefs",
+            "role": "xrefs_list",
+            "titleContains": [
+              "xrefs to format"
+            ],
+            "contentContains": [
+              "main+7F"
+            ],
+            "contentMode": "target",
+            "fallbackToWindow": false,
+            "maxNodes": 800,
+            "timeoutMs": 500
+          }
+        ],
+        "overlay": {
+          "placement": "bottom",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 440
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "open_strings",
+      "textKey": "chall1.static.open_strings.title",
+      "bodyKey": "chall1.static.open_strings.body",
+      "image": "courses/chall1/assets/media/07-ida-view-menu.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "chall1"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "main",
+            "role": "menu_view",
+            "nameEquals": "View",
+            "fallbackToWindow": true,
+            "maxNodes": 1000,
+            "timeoutMs": 600
+          }
+        ],
+        "overlay": {
+          "placement": "bottom",
+          "alignment": "start",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 450
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "strings_open",
+      "textKey": "chall1.static.strings.title",
+      "bodyKey": "chall1.static.strings.body",
+      "image": "courses/chall1/assets/media/08-ida-strings.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "chall1"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "strings",
+            "role": "strings_view",
+            "titleContains": [
+              "chall1"
+            ],
+            "contentContains": [
+              "Input flag:"
+            ],
+            "contentMode": "target",
+            "rejectContentContains": [
+              "DATA XREF",
+              "Pseudocode-A"
+            ],
+            "fallbackToWindow": false,
+            "maxNodes": 2400,
+            "timeoutMs": 900
+          },
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "strings",
+            "role": "strings_view",
+            "fallbackToWindow": true,
+            "maxNodes": 1800,
+            "timeoutMs": 750
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 14,
+          "maxWidth": 450
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      },
+      "trigger": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "strings",
+          "role": "strings_view",
+          "titleContains": [
+            "chall1"
+          ],
+          "contentContains": [
+            "Input flag:",
+            "__libc_start_main",
+            "strncmp"
+          ],
+          "requireAllNameContains": true,
+          "rejectContentContains": [
+            "DATA XREF",
+            "Pseudocode-A"
+          ],
+          "fallbackToWindow": false,
+          "maxNodes": 2400,
+          "timeoutMs": 900
+        }
+      }
+    },
+    {
+      "id": "string_definition",
+      "textKey": "chall1.static.definition.title",
+      "bodyKey": "chall1.static.definition.body",
+      "image": "courses/chall1/assets/media/09-ida-input-flag-reference.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "chall1"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "disassembly",
+            "role": "disassembly",
+            "titleContains": [
+              "chall1"
+            ],
+            "contentContains": [
+              "format",
+              "Input flag:"
+            ],
+            "contentMode": "target",
+            "rejectContentContains": [
+              "Pseudocode-A"
+            ],
+            "fallbackToWindow": false,
+            "maxNodes": 2600,
+            "timeoutMs": 900
+          },
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "disassembly",
+            "role": "disassembly",
+            "fallbackToWindow": true,
+            "maxNodes": 1800,
+            "timeoutMs": 750
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 6,
+          "gap": 14,
+          "maxWidth": 460
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      },
+      "trigger": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "disassembly",
+          "role": "disassembly",
+          "titleContains": [
+            "chall1"
+          ],
+          "contentContains": [
+            "format",
+            "Input flag:",
+            "DATA XREF",
+            "main+7F"
+          ],
+          "requireAllNameContains": true,
+          "rejectContentContains": [
+            "Pseudocode-A"
+          ],
+          "fallbackToWindow": false,
+          "maxNodes": 2600,
+          "timeoutMs": 900
+        }
+      }
+    },
+    {
+      "id": "xrefs_fallback",
+      "textKey": "chall1.static.xrefs.title",
+      "bodyKey": "chall1.static.xrefs.body",
+      "image": "courses/chall1/assets/media/10-ida-xrefs.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida"
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "xrefs",
+            "role": "xrefs_list",
+            "titleContains": [
+              "xrefs to format"
+            ],
+            "contentContains": [
+              "main+7F"
+            ],
+            "contentMode": "target",
+            "fallbackToWindow": true,
+            "maxNodes": 900,
+            "timeoutMs": 550
+          }
+        ],
+        "overlay": {
+          "placement": "bottom",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 440
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "disassembly_main",
+      "textKey": "chall1.static.disassembly.title",
+      "bodyKey": "chall1.static.disassembly.body",
+      "image": "courses/chall1/assets/media/11-ida-disassembly-main.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "chall1"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "disassembly",
+            "role": "disassembly",
+            "titleContains": [
+              "chall1"
+            ],
+            "contentContains": [
+              "loc_401270",
+              "Input flag:",
+              "call",
+              "_strcspn",
+              "_strncmp"
+            ],
+            "requireAllNameContains": true,
+            "rejectContentContains": [
+              "Pseudocode-A"
+            ],
+            "fallbackToWindow": false,
+            "maxNodes": 2800,
+            "timeoutMs": 950
+          },
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "disassembly",
+            "role": "disassembly",
+            "fallbackToWindow": true,
+            "maxNodes": 1800,
+            "timeoutMs": 750
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 14,
+          "maxWidth": 460
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      },
+      "trigger": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "disassembly",
+          "role": "disassembly",
+          "titleContains": [
+            "chall1"
+          ],
+          "contentContains": [
+            "loc_401270",
+            "Input flag:",
+            "call",
+            "_strcspn",
+            "_strncmp"
+          ],
+          "requireAllNameContains": true,
+          "rejectContentContains": [
+            "Pseudocode-A"
+          ],
+          "fallbackToWindow": false,
+          "maxNodes": 2800,
+          "timeoutMs": 950
+        }
+      }
+    },
+    {
+      "id": "pseudocode_flag",
+      "textKey": "chall1.static.pseudocode.title",
+      "bodyKey": "chall1.static.pseudocode.body",
+      "image": "courses/chall1/assets/media/12-ida-pseudocode.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "chall1"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "pseudocode",
+            "role": "pseudocode",
+            "titleContains": [
+              "chall1"
+            ],
+            "contentContains": [
+              "strcpy(s2",
+              "fgets(s, 128, stdin)",
+              "strcspn(s, \"\\n\")",
+              "strncmp(s, s2, 0x3Au)"
+            ],
+            "requireAllNameContains": true,
+            "contentMode": "target",
+            "fallbackToWindow": false,
+            "maxNodes": 3000,
+            "timeoutMs": 1000
+          },
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "pseudocode",
+            "role": "pseudocode",
+            "fallbackToWindow": true,
+            "maxNodes": 2000,
+            "timeoutMs": 800
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 8,
+          "gap": 14,
+          "maxWidth": 470
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      },
+      "trigger": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "pseudocode",
+          "role": "pseudocode",
+          "titleContains": [
+            "chall1"
+          ],
+          "contentContains": [
+            "strcpy(s2",
+            "fgets(s, 128, stdin)",
+            "strcspn(s, \"\\n\")",
+            "strncmp(s, s2, 0x3Au)"
+          ],
+          "requireAllNameContains": true,
+          "fallbackToWindow": false,
+          "maxNodes": 3000,
+          "timeoutMs": 1000
+        }
+      }
+    }
+  ]
+}

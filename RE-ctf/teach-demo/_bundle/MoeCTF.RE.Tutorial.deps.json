@@ -1,0 +1,24 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {},
+    ".NETCoreApp,Version=v8.0/win-x64": {
+      "MoeCTF.RE.Tutorial/0.1.0": {
+        "runtime": {
+          "MoeCTF.RE.Tutorial.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MoeCTF.RE.Tutorial/0.1.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

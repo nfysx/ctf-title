@@ -1,0 +1,13 @@
+# sqli-ctf 的数据库镜像：把 init.sql 打进镜像
+#
+# 为什么需要单独一个镜像：
+#   本地用 docker-compose 时，init.sql 是通过 volume 挂到 /docker-entrypoint-initdb.d/ 的；
+#   上传到 CTF 平台后没有 compose、没有 volume，直接用 mariadb:10.11 会得到**空库**，
+#   注入也就查不到 admin → 题目不可解。
+#   所以这里把 init.sql COPY 进去，镜像启动时 MariaDB 会自动执行它。
+#
+# 注意：平台环境下两个容器在同一个 pod 里共享网络，
+#   web 侧应该用 DB_HOST=127.0.0.1（而不是 compose 里的服务名 db）。
+FROM mariadb:10.11
+
+COPY init.sql /docker-entrypoint-initdb.d/init.sql

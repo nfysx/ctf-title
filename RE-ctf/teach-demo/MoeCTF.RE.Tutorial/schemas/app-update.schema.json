@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moectf.example/schemas/app-update.schema.json",
+  "title": "MoeCTF RE Tutorial App Update Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "appVersion"],
+  "properties": {
+    "schemaVersion": { "const": "1" },
+    "appVersion": { "type": "string", "minLength": 1 },
+    "channel": { "type": "string", "default": "stable" },
+    "mandatory": { "type": "boolean", "default": false },
+    "downloadUrl": { "type": ["string", "null"] },
+    "releaseNotesUrl": { "type": ["string", "null"] },
+    "sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "size": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "publishedAt": { "type": ["string", "null"] },
+    "notes": { "type": ["string", "null"] }
+  }
+}

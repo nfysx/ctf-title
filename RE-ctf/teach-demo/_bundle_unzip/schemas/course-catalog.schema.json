@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moectf.local/schemas/course-catalog.schema.json",
+  "title": "MoeCTF RE Tutorial Course Catalog",
+  "description": "The catalog version changes when the course list changes. Each referenced course owns its independent semantic version and update manifest.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "catalogVersion", "courses"],
+  "properties": {
+    "schemaVersion": { "const": "1" },
+    "catalogVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+    },
+    "catalogUpdateManifestUrl": { "type": ["string", "null"], "format": "uri" },
+    "appUpdateManifestUrl": { "type": ["string", "null"], "format": "uri" },
+    "courses": {
+      "type": "array",
+      "description": "Course manifest paths. Every referenced course manifest must declare its own root compatibility range.",
+      "items": {
+        "type": "string",
+        "description": "Path to a course manifest validated by course.schema.json, including compatibility.",
+        "pattern": "^courses/[A-Za-z0-9][A-Za-z0-9._:-]*(?:/course)?\\.json$"
+      },
+      "uniqueItems": true
+    }
+  }
+}

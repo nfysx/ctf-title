@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>disable</Nullable>
+    <LangVersion>12.0</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>RETutor</AssemblyName>
+    <RootNamespace>RETutor</RootNamespace>
+    <StartupObject>RETutor.Program</StartupObject>
+    <ApplicationIcon />
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>0.1.0</Version>
+    <FileVersion>0.1.0.0</FileVersion>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <Product>RETutor</Product>
+    <AssemblyTitle>MoeCTF逆向工程指北（仿制版）</AssemblyTitle>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content.zip" LogicalName="RETutor.Content.zip" Condition="Exists('Content.zip')" />
+    <EmbeddedResource Include="UiStrings.json" LogicalName="RETutor.UiStrings.json" Condition="Exists('UiStrings.json')" />
+  </ItemGroup>
+</Project>

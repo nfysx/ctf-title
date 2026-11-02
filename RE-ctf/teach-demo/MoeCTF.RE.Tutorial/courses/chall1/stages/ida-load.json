@@ -1,0 +1,543 @@
+{
+  "id": "chall1.ida-load",
+  "order": 1,
+  "titleKey": "chall1.ida.title",
+  "goalKey": "chall1.ida.goal",
+  "answerKey": "chall1.answer.external_submit_only",
+  "completionMode": "guided",
+  "targets": [
+    "chall1"
+  ],
+  "tools": [
+    "ida"
+  ],
+  "guideMode": "forced",
+  "deviations": [
+    {
+      "id": "ida_about",
+      "textKey": "chall1.ida.deviation.about",
+      "bodyKey": "chall1.ida.deviation.about.body",
+      "image": "courses/chall1/assets/media/02-ida-about.png",
+      "priority": 120,
+      "when": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "About"
+          ],
+          "contentContains": [
+            "IDA - The Interactive Disassembler",
+            "Hex-Rays",
+            "OK"
+          ],
+          "requireAllNameContains": true,
+          "fallbackToWindow": false,
+          "maxNodes": 800,
+          "timeoutMs": 500
+        }
+      },
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "About"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "role": "ok_button",
+            "titleContains": [
+              "About"
+            ],
+            "nameEquals": "OK",
+            "fallbackToWindow": false,
+            "maxNodes": 600,
+            "timeoutMs": 450
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 420
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "ida_quick_start",
+      "textKey": "chall1.ida.deviation.quick_start",
+      "bodyKey": "chall1.ida.deviation.quick_start.body",
+      "image": "courses/chall1/assets/media/03-ida-quick-start.png",
+      "priority": 110,
+      "when": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "quick_start",
+          "role": "quick_start_new",
+          "titleContains": [
+            "IDA: Quick start"
+          ],
+          "contentContains": [
+            "New",
+            "Display at startup"
+          ],
+          "requireAllNameContains": true,
+          "fallbackToWindow": false,
+          "maxNodes": 900,
+          "timeoutMs": 550
+        }
+      },
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "IDA: Quick start"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "quick_start",
+            "role": "quick_start_new",
+            "nameContains": [
+              "New"
+            ],
+            "fallbackToWindow": false,
+            "maxNodes": 700,
+            "timeoutMs": 500
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 430
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "ida_file_picker",
+      "textKey": "chall1.ida.deviation.file_picker",
+      "bodyKey": "chall1.ida.deviation.file_picker.body",
+      "image": "courses/chall1/assets/media/04-ida-file-picker.png",
+      "priority": 105,
+      "when": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "open_file_modal",
+          "role": "file_picker_dialog",
+          "titleContains": [
+            "Select file to disassemble"
+          ],
+          "fallbackToWindow": false,
+          "maxNodes": 1400,
+          "timeoutMs": 650
+        }
+      },
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "Select file to disassemble"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "open_file_modal",
+            "role": "file_picker_dialog",
+            "contentContains": [
+              "chall1"
+            ],
+            "contentMode": "target",
+            "fallbackToWindow": false,
+            "maxNodes": 1600,
+            "timeoutMs": 700
+          },
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "open_file_modal",
+            "role": "file_picker_dialog",
+            "fallbackToWindow": true,
+            "maxNodes": 1200,
+            "timeoutMs": 600
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 450
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "ida_load_file",
+      "textKey": "chall1.ida.deviation.load_file",
+      "bodyKey": "chall1.ida.deviation.load_file.body",
+      "image": "courses/chall1/assets/media/05-ida-load-file.png",
+      "priority": 115,
+      "when": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "load_file",
+          "titleContains": [
+            "Load a new file"
+          ],
+          "contentContains": [
+            "chall1",
+            "ELF64 for x86-64",
+            "metapc"
+          ],
+          "requireAllNameContains": true,
+          "fallbackToWindow": false,
+          "maxNodes": 1300,
+          "timeoutMs": 650
+        }
+      },
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "Load a new file"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "load_file",
+            "role": "confirm_button",
+            "nameEquals": "OK",
+            "contentContains": [
+              "ELF64 for x86-64",
+              "metapc"
+            ],
+            "requireAllNameContains": true,
+            "fallbackToWindow": false,
+            "maxNodes": 1200,
+            "timeoutMs": 600
+          }
+        ],
+        "overlay": {
+          "placement": "top",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 450
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "launch_ida",
+      "textKey": "chall1.ida.launch.title",
+      "bodyKey": "chall1.ida.launch.body",
+      "image": "courses/chall1/assets/media/02-ida-about.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida"
+        },
+        "locators": [
+          {
+            "strategy": "window",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "fallbackToWindow": true,
+            "timeoutMs": 500
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 6,
+          "gap": 14,
+          "maxWidth": 440
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "quick_start_fallback",
+      "textKey": "chall1.ida.quick_start.title",
+      "bodyKey": "chall1.ida.quick_start.body",
+      "image": "courses/chall1/assets/media/03-ida-quick-start.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida"
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "quick_start",
+            "role": "quick_start_new",
+            "nameContains": [
+              "New"
+            ],
+            "fallbackToWindow": true,
+            "maxNodes": 900,
+            "timeoutMs": 550
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 430
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "select_chall1_fallback",
+      "textKey": "chall1.ida.select.title",
+      "bodyKey": "chall1.ida.select.body",
+      "image": "courses/chall1/assets/media/04-ida-file-picker.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida"
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "open_file_modal",
+            "role": "file_picker_dialog",
+            "contentContains": [
+              "chall1"
+            ],
+            "contentMode": "target",
+            "fallbackToWindow": true,
+            "maxNodes": 1600,
+            "timeoutMs": 700
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 450
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "confirm_loader_fallback",
+      "textKey": "chall1.ida.loader.title",
+      "bodyKey": "chall1.ida.loader.body",
+      "image": "courses/chall1/assets/media/05-ida-load-file.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida"
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "load_file",
+            "role": "confirm_button",
+            "nameEquals": "OK",
+            "fallbackToWindow": true,
+            "maxNodes": 1200,
+            "timeoutMs": 600
+          }
+        ],
+        "overlay": {
+          "placement": "top",
+          "alignment": "center",
+          "padding": 6,
+          "gap": 12,
+          "maxWidth": 450
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      }
+    },
+    {
+      "id": "analysis_ready",
+      "textKey": "chall1.ida.ready.title",
+      "bodyKey": "chall1.ida.ready.body",
+      "image": "courses/chall1/assets/media/06-ida-analysis-complete.png",
+      "action": "none",
+      "tool": "ida",
+      "file": "chall1",
+      "guide": {
+        "target": {
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "titleContains": [
+            "chall1"
+          ]
+        },
+        "locators": [
+          {
+            "strategy": "uia",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "state": "main",
+            "role": "functions_view",
+            "titleContains": [
+              "chall1"
+            ],
+            "contentContains": [
+              "main",
+              "strncmp",
+              "fgets"
+            ],
+            "requireAllNameContains": true,
+            "fallbackToWindow": false,
+            "maxNodes": 2200,
+            "timeoutMs": 850
+          },
+          {
+            "strategy": "window",
+            "scope": "process",
+            "process": "tool:ida",
+            "adapter": "ida",
+            "titleContains": [
+              "chall1"
+            ],
+            "fallbackToWindow": true,
+            "timeoutMs": 500
+          }
+        ],
+        "overlay": {
+          "placement": "right",
+          "alignment": "start",
+          "padding": 8,
+          "gap": 14,
+          "maxWidth": 460
+        },
+        "fallback": {
+          "scope": "host",
+          "key": "coach"
+        }
+      },
+      "trigger": {
+        "kind": "locator_found",
+        "locator": {
+          "strategy": "uia",
+          "scope": "process",
+          "process": "tool:ida",
+          "adapter": "ida",
+          "state": "main",
+          "role": "functions_view",
+          "titleContains": [
+            "chall1"
+          ],
+          "contentContains": [
+            "main",
+            "strncmp",
+            "fgets"
+          ],
+          "requireAllNameContains": true,
+          "fallbackToWindow": false,
+          "maxNodes": 2200,
+          "timeoutMs": 850
+        }
+      }
+    }
+  ]
+}

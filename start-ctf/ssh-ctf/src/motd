@@ -1,0 +1,19 @@
+============================================================
+  XIAU-NCTF 2026 - ssh
+============================================================
+
+You are in. This shell runs inside a container, not on the platform.
+
+  The flag is a normal file:
+      cat /tmp/flag
+
+  Useful bits:
+      whoami / id        you are xaiu (uid 1000)
+      ls -la /tmp        the flag is world-readable
+      exit               close the session
+
+------------------------------------------------------------
+If you saw the "authenticity of host ... can not be established"
+prompt, typing "yes" once is expected: every instance has its own
+freshly generated host key.
+============================================================

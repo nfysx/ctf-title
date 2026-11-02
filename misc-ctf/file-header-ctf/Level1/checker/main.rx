@@ -1,0 +1,21 @@
+// checker/main.rx · 改个后缀就露馅（ext-lie-ctf）
+//
+// ret2shell 评测脚本：静态 flag 版本。
+//   check   —— 比对选手提交的 flag
+//   environ —— 附件型题目没有容器，返回空对象即可
+//
+// 想换成「动态附件评测」：用平台自带的 mapped 预设替换本文件，
+// 由它按用户映射附件并在附件里注入每用户唯一的 flag；本文件的 check 逻辑不再需要。
+
+const FLAG = "flag{r3n4m3_1t_4nd_5e3}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None));
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

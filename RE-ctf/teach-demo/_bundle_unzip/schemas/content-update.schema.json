@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moectf.example/schemas/content-update.schema.json",
+  "title": "MoeCTF RE Tutorial Content Update Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "files"],
+  "oneOf": [
+    { "required": ["contentVersion"] },
+    { "required": ["courseId", "courseVersion"] }
+  ],
+  "allOf": [
+    {
+      "if": { "required": ["courseId", "courseVersion"] },
+      "then": { "required": ["minHostVersion", "maxHostVersionExclusive"] }
+    }
+  ],
+  "properties": {
+    "contentVersion": { "type": "string", "minLength": 1 },
+    "courseId": { "$ref": "#/$defs/courseId" },
+    "courseVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+    },
+    "schemaVersion": { "const": "1" },
+    "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+    "minHostVersion": { "$ref": "#/$defs/hostVersion" },
+    "maxHostVersionExclusive": { "$ref": "#/$defs/hostVersion" },
+    "hostUpdateManifestUrl": { "type": ["string", "null"], "format": "uri" },
+    "notes": { "type": ["string", "null"] },
+    "prune": { "type": "boolean", "default": false },
+    "delete": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/contentPath" },
+      "uniqueItems": true,
+      "default": []
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "$ref": "#/$defs/contentPath" },
+          "url": { "type": ["string", "null"] },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hostVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "courseId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "contentPath": {
+      "type": "string",
+      "pattern": "^(courses/|stages/|assets/i18n/|assets/media/|schemas/)[^\\\\:*?\"<>|]+$",
+      "not": {
+        "anyOf": [
+          { "pattern": "(^|/)\\.\\.(/|$)" },
+          { "pattern": "(^|/)assets/targets/" },
+          { "pattern": "\\.(exe|dll|pdb|id0|id1|id2|nam|til|idb|i64)$" },
+          { "pattern": "\\.(deps|runtimeconfig)\\.json$" }
+        ]
+      }
+    }
+  }
+}

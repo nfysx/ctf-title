@@ -1,0 +1,15 @@
+// checker/main.rx · 现场演示 demo-04（六位密码，四秒破）· 可选
+// 演示题通常不上平台；如果要放上去，用这个静态 flag 版本即可。
+
+const FLAG = "flag{6_d16175_15_n0th1ng}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None));
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

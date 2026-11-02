@@ -1,0 +1,7 @@
+{
+  "stages": [
+    "die",
+    "ida-load",
+    "static-read"
+  ]
+}

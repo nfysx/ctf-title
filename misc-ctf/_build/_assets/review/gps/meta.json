@@ -1,0 +1,46 @@
+[
+  {
+    "title": "File:Oriental Pearl Tower from Jin Mao Tower.jpg",
+    "w": 2083,
+    "h": 3703,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Oriental_Pearl_Tower_from_Jin_Mao_Tower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "lic": "CC BY-SA 4.0",
+    "artist": "Zossolino",
+    "lat": "31.237223",
+    "lon": "121.501114",
+    "file": "D:\\ctf\\misc-ctf\\_build\\_assets\\review\\gps\\g01.jpg"
+  },
+  {
+    "title": "File:Oriental Pearl Tower in Shanghai.jpg",
+    "w": 2000,
+    "h": 3000,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Oriental_Pearl_Tower_in_Shanghai.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "lic": "CC BY-SA 4.0",
+    "artist": "Dmitry A. Mottl",
+    "lat": "31.240412",
+    "lon": "121.496930",
+    "file": "D:\\ctf\\misc-ctf\\_build\\_assets\\review\\gps\\g02.jpg"
+  },
+  {
+    "title": "File:Shanghai Oriental Pearl Tower-20150516-RM-174122.jpg",
+    "w": 2654,
+    "h": 4608,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Shanghai_Oriental_Pearl_Tower-20150516-RM-174122.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "lic": "CC BY-SA 4.0",
+    "artist": "Ermell",
+    "lat": "31.236667",
+    "lon": "121.496111",
+    "file": "D:\\ctf\\misc-ctf\\_build\\_assets\\review\\gps\\g03.jpg"
+  },
+  {
+    "title": "File:Shanghai Oriental Pearl Tower-20150516-RM-180306.jpg",
+    "w": 3456,
+    "h": 4608,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Shanghai_Oriental_Pearl_Tower-20150516-RM-180306.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "lic": "CC BY-SA 4.0",
+    "artist": "Ermell",
+    "lat": "31.240967",
+    "lon": "121.497997",
+    "file": "D:\\ctf\\misc-ctf\\_build\\_assets\\review\\gps\\g04.jpg"
+  }
+]

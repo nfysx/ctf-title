@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "1",
+  "id": "chall1",
+  "version": "1.0.2",
+  "compatibility": {
+    "minHostVersion": "0.1.0",
+    "maxHostVersionExclusive": "0.2.0"
+  },
+  "status": "published",
+  "updateManifestUrl": "https://raw.githubusercontent.com/nkanf-dev/moectf-re-tutorial-content/refs/heads/main/courses/chall1/update.json",
+  "appUpdateManifestUrl": "https://raw.githubusercontent.com/nkanf-dev/moectf-re-tutorial-content/refs/heads/main/app-update.json",
+  "metadata": {
+    "title": "chall1：第一次逆向实践",
+    "subtitle": "从识别文件到读懂第一段伪代码",
+    "summary": "用 DIE 认识 chall1，再在 IDA 中沿着字符串、交叉引用和伪代码找到 flag。",
+    "track": "Reverse",
+    "difficulty": "零基础",
+    "estimatedMinutes": 35,
+    "tags": [
+      "MoeCTF 2026",
+      "入门",
+      "DIE",
+      "IDA"
+    ],
+    "authors": [
+      "nkanf"
+    ]
+  },
+  "content": {
+    "stagesDir": "courses/chall1/stages",
+    "i18nDir": "courses/chall1/i18n",
+    "assetsDir": "courses/chall1/assets",
+    "stageIndex": "courses/chall1/stages/index.json"
+  },
+  "requirements": {
+    "id": "chall1.requirements",
+    "title": "开始前需要准备",
+    "description": "提供题目附件 chall1，并选择本机安装的 DIE 与 IDA。",
+    "allOf": [
+      {
+        "id": "target.chall1",
+        "kind": "target",
+        "label": "chall1",
+        "description": "比赛题目附件中的 chall1 文件",
+        "targetId": "chall1",
+        "match": {
+          "fileNames": [
+            "chall1"
+          ],
+          "sha256": "f86808dd1c38a0b64b843b2f4cdb57d49b688c20c8e6a5ccdf3e08e7e931fa44",
+          "size": 16120,
+          "recursive": true
+        },
+        "asset": {
+          "path": "courses/chall1/assets/targets/chall1",
+          "copyMode": "copy"
+        }
+      },
+      {
+        "id": "tool.die",
+        "kind": "tool",
+        "label": "Detect It Easy",
+        "description": "用于查看程序文件的基本信息",
+        "toolId": "die",
+        "match": {
+          "fileNames": [
+            "die.exe"
+          ],
+          "recursive": true
+        }
+      },
+      {
+        "id": "tool.ida",
+        "kind": "tool",
+        "label": "IDA",
+        "description": "用于查看反汇编、交叉引用和伪代码",
+        "toolId": "ida",
+        "match": {
+          "fileNames": [
+            "ida.exe",
+            "ida64.exe",
+            "idafree.exe"
+          ],
+          "recursive": true
+        }
+      }
+    ]
+  },
+  "flow": {
+    "entry": "chall1.die",
+    "stages": [
+      {
+        "id": "chall1.die",
+        "path": "courses/chall1/stages/die.json",
+        "requires": [
+          "target.chall1",
+          "tool.die"
+        ],
+        "next": [
+          {
+            "to": "chall1.ida-load",
+            "when": {
+              "kind": "always"
+            }
+          }
+        ]
+      },
+      {
+        "id": "chall1.ida-load",
+        "path": "courses/chall1/stages/ida-load.json",
+        "requires": [
+          "target.chall1",
+          "tool.ida"
+        ],
+        "next": [
+          {
+            "to": "chall1.static-read",
+            "when": {
+              "kind": "always"
+            }
+          }
+        ]
+      },
+      {
+        "id": "chall1.static-read",
+        "path": "courses/chall1/stages/static-read.json",
+        "requires": [
+          "target.chall1",
+          "tool.ida"
+        ]
+      }
+    ]
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-08-09",
+      "text": "首个正式版本",
+      "items": [
+        "加入 DIE 文件识别引导",
+        "加入 IDA 载入与可选弹窗引导",
+        "加入 Strings、交叉引用、反汇编和伪代码完整路线"
+      ]
+    }
+  ]
+}

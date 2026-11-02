@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>MoeCTF.RE.Tutorial</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>True</UseWPF>
+    <TargetFramework>netcoreapp8.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>12.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="assets\fonts\jetbrainsmono-regular.ttf" />
+    <None Remove="assets\appicon.ico" />
+    <None Remove="styles\ret2shellcomponents.baml" />
+    <None Remove="mainwindow.baml" />
+    <None Remove="styles\ret2shelltokens.baml" />
+    <None Remove="app.baml" />
+    <None Remove="coach\coachoverlaywindow.baml" />
+    <None Remove="MoeCTF.RE.Tutorial.Host.BundledContent.zip" />
+    <EmbeddedResource Include="assets\fonts\jetbrainsmono-regular.ttf" LogicalName="assets/fonts/jetbrainsmono-regular.ttf" />
+    <EmbeddedResource Include="assets\appicon.ico" LogicalName="assets/appicon.ico" />
+    <EmbeddedResource Include="styles\ret2shellcomponents.baml" LogicalName="styles/ret2shellcomponents.baml" />
+    <EmbeddedResource Include="mainwindow.baml" LogicalName="mainwindow.baml" />
+    <EmbeddedResource Include="styles\ret2shelltokens.baml" LogicalName="styles/ret2shelltokens.baml" />
+    <EmbeddedResource Include="app.baml" LogicalName="app.baml" />
+    <EmbeddedResource Include="coach\coachoverlaywindow.baml" LogicalName="coach/coachoverlaywindow.baml" />
+    <EmbeddedResource Include="MoeCTF.RE.Tutorial.Host.BundledContent.zip" LogicalName="MoeCTF.RE.Tutorial.Host.BundledContent.zip" />
+  </ItemGroup>
+  <ItemGroup />
+</Project>

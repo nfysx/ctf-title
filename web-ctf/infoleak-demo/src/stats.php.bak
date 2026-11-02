@@ -1,0 +1,14 @@
+<?php
+/**
+ * stats.php 的本地备份 —— 别直接扔在网站目录里
+ */
+
+// 运维临时调试口令（secret_debug.php / admin_9k2x 都用它）
+// $DEBUG_TOKEN = 'sk-9f2c1a7b';
+// 用法： /secret_debug.php?token=sk-9f2c1a7b
+
+$id   = isset($_GET['id']) ? $_GET['id'] : '1';
+$file = __DIR__ . '/data/visit-' . $id . '.json';
+$raw  = file_get_contents($file);
+$data = json_decode($raw, true);
+?>

@@ -1,0 +1,6 @@
+{
+  "channel": "retutor",
+  "courseUpdateUrl": "https://example.com/retutor/courses/chall1/update.json",
+  "appUpdateUrl": "https://example.com/retutor/app-update.json",
+  "notes": "仿制版自己的更新渠道。三项都可以留空：留空即不联网，只使用内嵌内容包。清单格式与原版一致（schemaVersion/courseVersion/files[path,url,sha256]）。"
+}

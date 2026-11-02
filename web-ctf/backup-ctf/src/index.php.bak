@@ -1,0 +1,13 @@
+<?php
+/**
+ * 内部通知系统 v1.0  ——  本地备份，请勿部署
+ */
+require __DIR__ . '/flag.inc.php';
+
+// TODO 上线前删掉这行 / 或者改掉口令
+$TOKEN = 'debug-2026';
+
+if (isset($_GET['debug']) && $_GET['debug'] === $TOKEN) {
+    echo ctf_flag();
+}
+?>

@@ -1,0 +1,199 @@
+{
+  "target": "demo-04",
+  "title": "六位密码，四秒破",
+  "mode": "zip",
+  "variants": {
+    "chall-01.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_779b1}",
+      "bytes": 489,
+      "sha256": "c804d46237e28c7cbdf6d93076ec7e9d0420954396049533dfcc11e83c00cd67",
+      "mode": "zip"
+    },
+    "chall-02.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_ef362}",
+      "bytes": 489,
+      "sha256": "4410218a36e3489c93e6e21291dc5f7d103584722e69b5417cee9bb8bafc89de",
+      "mode": "zip"
+    },
+    "chall-03.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_66d13}",
+      "bytes": 489,
+      "sha256": "4b0231d770392aa65c3904b9ecb418bf5e24aedf3aaf88c1a861b9c0c25af9b5",
+      "mode": "zip"
+    },
+    "chall-04.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_de6c4}",
+      "bytes": 489,
+      "sha256": "198e73224e49f508cbd3f5f6076e2b1f5704217ae7bf63e1f78c2d5fcb7452d5",
+      "mode": "zip"
+    },
+    "chall-05.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_56075}",
+      "bytes": 489,
+      "sha256": "cfda163942742221ee413bd9f80afa7b81bfe2227d586bdc6c98ef0c67198254",
+      "mode": "zip"
+    },
+    "chall-06.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_cda26}",
+      "bytes": 489,
+      "sha256": "820d1927e491aa6592cbf16252e7c854701e90ce0cc7a8e684d13b7e534423fd",
+      "mode": "zip"
+    },
+    "chall-07.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_453d7}",
+      "bytes": 488,
+      "sha256": "edabb9b05b7fb6bbc2389158a4015d2bb439773d2f8273803ddd8e9e527f3869",
+      "mode": "zip"
+    },
+    "chall-08.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_bcd88}",
+      "bytes": 489,
+      "sha256": "5fc970c475691a10e1340dc9f39217df3b12061a0033d7431208c5766d55e8c3",
+      "mode": "zip"
+    },
+    "chall-09.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_34739}",
+      "bytes": 489,
+      "sha256": "759c891181a55431fa545cee98de8802bd1734b7001012a713d8a712804d7d18",
+      "mode": "zip"
+    },
+    "chall-10.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_ac0ea}",
+      "bytes": 490,
+      "sha256": "c6c88b732cff40f4b65d6826ae16a80cad2d88b1050cd2c9dbdc62ccad73d559",
+      "mode": "zip"
+    },
+    "chall-11.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_23a9b}",
+      "bytes": 489,
+      "sha256": "721ab54207f1d7bd42c51feed09a16bfbfe3383d3069e12e688c05c67ea1597f",
+      "mode": "zip"
+    },
+    "chall-12.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_9b44c}",
+      "bytes": 490,
+      "sha256": "6e5ed0abb68e50626ff5b7e85e99b5fc3a346c7120fa6f53306f8bc8dd38737d",
+      "mode": "zip"
+    },
+    "chall-13.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_12dfd}",
+      "bytes": 490,
+      "sha256": "3bf4df923fe3c9d4beb437f3acb08fed37e21bd75e43740ff88b10f415cfbd47",
+      "mode": "zip"
+    },
+    "chall-14.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_8a7ae}",
+      "bytes": 490,
+      "sha256": "ff0786089327002c940e45a1ad8d459cd49d945b98e194159f6ae9762069d22d",
+      "mode": "zip"
+    },
+    "chall-15.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_0215f}",
+      "bytes": 489,
+      "sha256": "291925e2373f08105eeee871619d9f115824ef36afc825e5a5eb2734fcb34eb1",
+      "mode": "zip"
+    },
+    "chall-16.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_79b10}",
+      "bytes": 490,
+      "sha256": "ad9de26d83c22881b4dabd8e3132d5d6013118a796a99e176774b47fdf99494f",
+      "mode": "zip"
+    },
+    "chall-17.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_f14c1}",
+      "bytes": 489,
+      "sha256": "bd41dd91465737ff46ac9633efbb8f46f0d2a238d18ca36bcb25cf97796bbd1a",
+      "mode": "zip"
+    },
+    "chall-18.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_68e72}",
+      "bytes": 489,
+      "sha256": "e84ef7e81a76c067ef57f772d7456febb4a151463fc8355c2eec657a6d34763c",
+      "mode": "zip"
+    },
+    "chall-19.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_e0823}",
+      "bytes": 489,
+      "sha256": "31d438efb63a1d26674e70da0bc3862b3795fa00063f6cbfea6c327d8eade18e",
+      "mode": "zip"
+    },
+    "chall-20.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_581d4}",
+      "bytes": 489,
+      "sha256": "5f3fa5184695c4b5203b49821e37b5dd29fcdd96d88035e2ba67105f9f2e7444",
+      "mode": "zip"
+    },
+    "chall-21.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_cfb85}",
+      "bytes": 490,
+      "sha256": "bd20dfce397528f57923084143142a90f7f6c5a6d9dd55324d5cfc55bee09577",
+      "mode": "zip"
+    },
+    "chall-22.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_47536}",
+      "bytes": 489,
+      "sha256": "09dc7c464a3b2e967b676956449ce7ee810a66eca1c5560ced6c05d88571d9a2",
+      "mode": "zip"
+    },
+    "chall-23.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_beee7}",
+      "bytes": 489,
+      "sha256": "cbf410e028f95c2ece6b07d4382929e9fe513559ead4803b090270dc6f7180a5",
+      "mode": "zip"
+    },
+    "chall-24.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_36898}",
+      "bytes": 489,
+      "sha256": "c6db2174fa4461abd86f031c38d8a5fdaa3f764fe5dce5dfee72cccd501849b9",
+      "mode": "zip"
+    },
+    "chall-25.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_ae249}",
+      "bytes": 490,
+      "sha256": "87734162f953f6da4baba4995a91bc143ef14c970973b21bb9d31737e90dd817",
+      "mode": "zip"
+    },
+    "chall-26.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_25bfa}",
+      "bytes": 490,
+      "sha256": "1a8695803bf53c30ae07159e1e2f92e8348ee4d5ca602d5f48f9bc13ac8b5db2",
+      "mode": "zip"
+    },
+    "chall-27.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_9d5ab}",
+      "bytes": 489,
+      "sha256": "0871462b45561a0cb61ddb54a04af61289084a47ead8a053a903f5e84422c51e",
+      "mode": "zip"
+    },
+    "chall-28.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_14f5c}",
+      "bytes": 489,
+      "sha256": "25bfc279e2a8fd36bdf36ab5b0a4d22caa10c58c30961a6705c461fb5165a6a6",
+      "mode": "zip"
+    },
+    "chall-29.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_8c90d}",
+      "bytes": 489,
+      "sha256": "c74dc707ccf4ed8845057d47c038f175955445547c45ddf1d1eb4d90b7d1f847",
+      "mode": "zip"
+    },
+    "chall-30.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_042be}",
+      "bytes": 489,
+      "sha256": "e8433dfaba94a361dfae8a4c6dc74b406130a0c79e45f7650f440727e702d6ed",
+      "mode": "zip"
+    },
+    "chall-31.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_7bc6f}",
+      "bytes": 489,
+      "sha256": "43b9c92460711ef92db98f85ebd5c9734c87ac11034bc4e2439b3fb63311a21b",
+      "mode": "zip"
+    },
+    "chall-32.zip": {
+      "flag": "flag{6_d16175_15_n0th1ng_f3620}",
+      "bytes": 489,
+      "sha256": "ee3f79ddd0ab47ecb7001dbf205e7179376aaa558f752856aa94204542d01e42",
+      "mode": "zip"
+    }
+  }
+}
