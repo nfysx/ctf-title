@@ -302,8 +302,8 @@ web-ctf/
 
 ---
 
-## 已知待办
 
+<<<<<<< HEAD
 - ~~`xss-reflect-ctf/my-challenge.tar`（156 MB）……git 历史里仍然存在~~，**已解决**：
   该 blob 已用 `git filter-branch` 从历史中剔除，`.git` 从 155 MB 降到 7.9 MB。
 - ~~本地还留着几个旧镜像……~~，**已清理**：旧镜像已 `docker rmi`，当前只剩 12 个题目镜像。
@@ -311,3 +311,5 @@ web-ctf/
 - 本仓库已随 `misc-ctf` 一起迁到 `D:\ctf\`：
   `D:\ctf\web-ctf`（本目录）与 `D:\ctf\misc-ctf`（MISC 题集）。
   镜像包仍在 `D:\web-ctf-images\`，未随仓库移动。
+=======
+>>>>>>> 8a4af124a38bb7e0f27550311c011642f59bb37e
