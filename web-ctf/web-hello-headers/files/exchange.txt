@@ -1,0 +1,32 @@
+GET /dashboard HTTP/1.1
+Host: challenge.local:8080
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+Cookie: sid=8f14e45fceea167a5a36dedd4bea2543; theme=dark
+
+HTTP/1.1 200 OK
+Date: Tue, 03 Nov 2026 02:10:41 GMT
+Server: nginx/1.24.0
+Content-Type: text/html; charset=utf-8
+Content-Length: 177
+Cache-Control: no-store
+X-Request-Id: 6f1c9a3e-2b47-4d18-9a55-0d3c7e8a1b02
+X-Powered-By: PHP/7.4.33
+X-Content-Type-Options: nosniff
+X-Trace-Id: trace-5b2e91c4
+X-Flag-Hint: headers-are-part-of-the-response
+X-Flag: flag{read_the_response_headers}
+Set-Cookie: seen=1; Path=/; HttpOnly
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>控制台</title></head>
+<body>
+  <h1>控制台</h1>
+  <p>已登录，欢迎回来。</p>
+</body>
+</html>

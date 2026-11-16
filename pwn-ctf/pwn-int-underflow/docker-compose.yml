@@ -1,0 +1,10 @@
+services:
+  pwn-int-underflow:
+    build: .
+    image: pwn-int-underflow:latest
+    container_name: pwn-int-underflow
+    ports:
+      - "9105:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

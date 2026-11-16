@@ -8,7 +8,7 @@
 
 ---
 
-## 题目一览（12 题）
+## 题目一览（14 题 + 1 示例站）
 
 | 目录 | 题名 | 考点 | 难度 | 端口 | 对应课件 |
 |---|---|---|---|---|---|
@@ -23,21 +23,19 @@
 | `status-ctf/` | 跳转测试台 | 状态码、302 重定向、响应头 | 1 | **8088** | p24 状态码 |
 | `encode-ctf/` | 两层门 | Base64、十六进制、编码≠加密 | 1 | **8089** | p48 编码 |
 | `upload-ctf-2/` | 头像上传（进阶） | 文件上传、`Content-Type` 可伪造 | 2 | **8091** | p36 文件上传 |
-| `connect-ctf/` | 连接平台 | 在线环境的连接方式（赛前引导题，页面直接给 flag） | 0 | **8092** | 赛前环境熟悉 |
+| `stock-trading-ctf/` | 股海惊涛 | 抓包改包、客户端可控余额、条件参数 | 3 | **8093** | p17 请求详解 · p20 会话 |
+| `web-hello-source/` ☆ | 先学会看源码 | `Ctrl+U` / F12 Elements / curl 三种看法、HTML 注释 | 1 | — | 课前热身 |
+| `web-hello-headers/` ☆ | 一次完整的 HTTP 交换 | 起始行 / 头 / 空行 / 正文、请求头 vs 响应头 | 1 | — | 课前热身 |
 
 > **`upload-ctf-1` 与 `upload-ctf-2` 是同一道题的两个难度**：
 > 前者直接传 `.php` 就能成（只留上传漏洞）；后者加了一道 `Content-Type` 检查，需要伪造请求头绕过。
 > 建议课堂顺序：先 `-1` 建立「传上去 → 访问它」的直觉，再上 `-2` 讲绕过。
 
-端口 8080–8089 + 8091 + 8092，**可以同时启动互不冲突**（8090 留给示例站）。
+端口 8080–8089 + 8091 + 8093，**可以同时启动互不冲突**（8090 留给示例站）。
+带 ☆ 的两道是纯附件题（不起容器），定位是该方向的**第一课**，建议在正题之前先做。
 
-> `connect-ctf` 是**赛前引导题**（对应 NCTF 那类「如何连接平台」的热身题）：
-> 没有任何漏洞，浏览器一打开页面就显示 flag，用来让选手先跑通「启动环境 → 连上 → 拿到东西」这条链路。
-> 建议放在比赛开场，或者当天的第一张 PPT 上现场演示。
->
-> 它同时带了 **ret2shell 平台题目包**（`connect-ctf/ret2shell/`：`config.toml` / `env.toml` /
-> `checker/main.rx` / `hints.toml` / `answer.md` + 一键上传脚本），可直接传到线上平台；
-> 容器内监听 **8080**（平台 restricted 模式会丢 `CAP_NET_BIND_SERVICE`，绑不了 80），宿主映射 8092。
+> `connect-ctf`（连接平台）**不在本目录**，它和 `nc-ctf` / `ssh-ctf` 一起放在
+> [`../start-ctf/`](../start-ctf/)，属于赛前热身组，不参与 Web 方向的编号。
 
 ---
 
@@ -45,7 +43,7 @@
 
 | 目录 | 站名 | 内容 | 难度 | 端口 |
 |---|---|---|---|---|
-| `infoleak-demo/` | 星记博客（二次元个人博客） | **信息泄露总示范** —— 把 PPT p31 清单上的 10 种泄露点全摆在一个站里 | 1 | **8090** |
+| `infoleak-demo/` | 星记博客（二次元个人博客） | **信息泄露总示范**：把 PPT p31 清单上的 10 种泄露点全摆在一个站里 | 1 | **8090** |
 
 它不算一道单点题，是**课堂演示用的靶子**：站点本体是真实博客的构建产物（视觉、交互都保持原样，
 所以看着就是个正常的二次元个人博客），在此基础上故意加了一批运维常犯的错。
@@ -72,7 +70,7 @@
 
 生成的随机 flag 形如 `flag{40fd67b7-344e-4edd-9afd-707be0ffc3a7}`（UUID v4）。
 
-**注入方式**——`docker-compose.yml` 里已经准备好这一行：
+**注入方式**：`docker-compose.yml` 里已经准备好这一行：
 
 ```yaml
     environment:
@@ -159,7 +157,7 @@ curl -s http://127.0.0.1:8087/
 | ③ 临时删掉别名 | `Remove-Item Alias:curl -ErrorAction SilentlyContinue`，然后照常敲 `curl` | 只影响当前窗口 |
 | ④ **永久删掉别名**（推荐） | 见下面「一劳永逸」 | 所有新窗口 |
 
-> ⚠️ **`Set-Alias curl curl.exe` 是无效的** —— 内置别名带 `AllScope` 属性，会报
+> **`Set-Alias curl curl.exe` 是无效的**：内置别名带 `AllScope` 属性，会报
 > `The AllScope option cannot be removed from the alias 'curl'`。只能 `Remove-Item` 把它删掉。
 
 ### 一劳永逸：把别名写死删掉
@@ -254,8 +252,7 @@ web-ctf/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
 │   └── README.md
-├── connect-ctf/               # 赛前引导题：进去就看见 flag
-├── ...（共 12 道题 + 1 个示例站）
+├── ...（共 14 道题 + 1 个示例站）
 ├── .gitignore
 └── README.md
 ```
@@ -272,10 +269,12 @@ web-ctf/
 
 已在真实 Docker 环境（Docker Desktop 29.6.1）逐题跑过：
 
-- **12 个镜像**（11 题 + 1 示例站）全部构建成功
-- 全部实例同时启动，8080–8089 + 8091 端口就绪，示例站占 8090
-- **12 个实例全量校验通过**：正例拿到 flag、反例不给 flag、
-  12 个动态 flag 互不相同且与各自容器内 `/tmp/.web_ctf_flag` 一致
+- **13 个镜像**（12 道容器题 + 1 示例站）全部构建成功
+- 全部实例同时启动，8080–8089 + 8091 + 8093 端口就绪，示例站占 8090
+- **13 个实例全量校验通过**：正例拿到 flag、反例不给 flag、
+  动态 flag 互不相同且与各自容器内 `/tmp/.web_ctf_flag` 一致
+- **端口整改后复验**：13 个镜像逐个 `docker run --cap-drop NET_BIND_SERVICE` 实跑，
+  全部返回 HTTP 200（Apache 已统一 `Listen 8080`）
 - `FLAG=flag{...} docker compose up -d` 注入实测生效
 - 所有容器日志无 PHP Fatal / Parse / Warning
 
@@ -286,13 +285,14 @@ web-ctf/
 1. 建目录 `xxx-ctf/`，源码放 `src/`
 2. 复制一份 `flag.inc.php` 到 `src/`
 3. 在需要的页面 `require __DIR__ . '/flag.inc.php';` 然后 `echo ctf_flag();`
-4. `Dockerfile`：`FROM php:7.4-apache` + `COPY src/ /var/www/html/`
+4. `Dockerfile`：`FROM php:7.4-apache` + **两行 sed 把监听改成 8080** + `COPY src/ /var/www/html/` + `EXPOSE 8080`
+   （平台 restricted 会 drop `NET_BIND_SERVICE`，监听 80 会起不来，抄 `connect-ctf/Dockerfile`）
 5. `docker-compose.yml`：分配一个没被占用的端口，`environment` 里留 `- FLAG=${FLAG:-}` 和 `TZ`
 6. 写 `README.md` 题解，跑一遍确认能打通
 
 ---
 
-## ⚠️ 安全提醒
+## 安全提醒
 
 这些应用**故意包含漏洞**：注入、上传木马、伪造身份等等。
 
@@ -304,9 +304,9 @@ web-ctf/
 
 ## 已知待办
 
-- ~~`xss-reflect-ctf/my-challenge.tar`（156 MB）……git 历史里仍然存在~~ —— **已解决**：
+- ~~`xss-reflect-ctf/my-challenge.tar`（156 MB）……git 历史里仍然存在~~，**已解决**：
   该 blob 已用 `git filter-branch` 从历史中剔除，`.git` 从 155 MB 降到 7.9 MB。
-- ~~本地还留着几个旧镜像……~~ —— **已清理**：旧镜像已 `docker rmi`，当前只剩 12 个题目镜像。
+- ~~本地还留着几个旧镜像……~~，**已清理**：旧镜像已 `docker rmi`，当前只剩 12 个题目镜像。
 - 未覆盖 CSRF / 存储型 XSS：这两类需要「受害者主动访问」，诚实出题要额外的无头浏览器 bot。
 - 本仓库已随 `misc-ctf` 一起迁到 `D:\ctf\`：
   `D:\ctf\web-ctf`（本目录）与 `D:\ctf\misc-ctf`（MISC 题集）。

@@ -1,0 +1,10 @@
+services:
+  pwn-one-byte:
+    build: .
+    image: pwn-one-byte:latest
+    container_name: pwn-one-byte
+    ports:
+      - "9104:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

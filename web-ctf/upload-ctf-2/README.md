@@ -15,9 +15,17 @@
 
 > 在这儿传 `.php`，确实 **AI 做不到这么抽象**；不过真敢这么干，**你的胆子真是肥嘟嘟的啊**。
 
+## 题面（直接复制到平台「简介」）
+
+同一套头像上传站的进阶版，多了一道「只允许上传图片」的检查。
+你是普通用户，手里只有浏览器和一个能改请求的工具。
+目标是绕过这道检查，把可执行文件留在服务器上：浏览器打开 http://<地址>:8091/ 。
+
+**提示**：那道检查读的是请求里的 Content-Type，这个值由客户端填写，不是服务器探测出来的。
+
 ## 二、启动环境
 
-> ⚠️ **Windows PowerShell 5.1 用户注意**：`curl` 在那里是 `Invoke-WebRequest` 的别名，
+> **Windows PowerShell 5.1 用户注意**：`curl` 在那里是 `Invoke-WebRequest` 的别名，
 > 敲 `curl -H "A: B"` 会报「无法绑定参数 Headers」。请改用 **`curl.exe`**（Windows 10 1803+ 自带）。
 > 完整命令对照表见总 README 的「**在 Windows 上怎么敲这些命令**」一节。
 
@@ -38,7 +46,7 @@ docker compose up -d --build
 访问：uploads/xxx.png
 ```
 
-——**上传目录能直接访问**，这是后面 getshell 的前提。
+**上传目录能直接访问**，这是后面 getshell 的前提。
 
 ### Step 2｜直接传 .php，会被挡
 
@@ -52,7 +60,7 @@ docker compose up -d --build
 
 > 只允许上传图片（Content-Type 必须是 image/*），你上传的是：application/x-php
 
-注意这行提示 —— **它把判断依据直接告诉你了**：看的是 `Content-Type`。
+注意这行提示，**它把判断依据直接告诉你了**：看的是 `Content-Type`。
 
 ### Step 3｜伪造 Content-Type 再传（curl 一行搞定）
 
@@ -131,3 +139,25 @@ $mime  = finfo_file($finfo, $tmp_path);
 ```bash
 FLAG=flag{your-dynamic-flag} docker compose up -d
 ```
+
+---
+
+## 平台镜像配置（添加镜像时照这张表填）
+
+| 字段 | 填什么 | 说明 |
+|---|---|---|
+| 容器名称 | `upload-ctf-2` | 与题目目录名、tar 文件名保持一致 |
+| 镜像标签 | `<registry>/<bucket>/upload-ctf-2` | 仓库名取自 tar 文件名（去扩展名），上传后 UI 自动带出 |
+| 镜像版本 | 上传后生成的 Unix 时间戳 | 下拉选最新那条，不要手填 |
+| 镜像拉取策略 | `Always` | 与平台默认一致 |
+| 服务描述 | HTTP 站点（浏览器访问） | 只是备注，不影响运行 |
+| 传输协议 | `tcp` | 全库只有 TCP 服务 |
+| 应用协议 | `http` | HTTP 站点选 http |
+| **服务端口** | **`8080`** | 容器内实际监听端口，必须与 Dockerfile 的 `EXPOSE` 一致 |
+| CPU 限制 | `0.1, 0.5` | 最小, 最大（核） |
+| 内存限制（MB） | `32, 128` | 最小, 最大 |
+| 存储限制（MB） | `64, 1024` | 最小, 最大 |
+| restricted | **勾选** | 平台会 drop `NET_BIND_SERVICE`，所以容器监听的是 `8080` 而不是 80 |
+| 出网 | **关闭** | 本题不需要外网 |
+
+> 端口必须填 **8080**。历史上按 80 填过的记录要改过来：容器里 Apache 已改成 `Listen 8080`，填 80 会连不上。

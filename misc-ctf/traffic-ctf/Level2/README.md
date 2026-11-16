@@ -20,6 +20,12 @@
 |---|---|
 | `files/capture.pcap` | 附件 |
 
+## 题面（直接复制到平台「简介」）
+
+这段 `files/capture.pcap` 是一次文件下载的完整过程：响应被拆成了很多段，到达顺序也不整齐。目标：把服务端发出来的内容按原样拼回去。
+
+**提示**：抓包工具能按序号帮你重排，但内容本身还有一层自己的分段。
+
 ## 二、手把手解题
 
 ### Step 1｜先过滤出 HTTP
@@ -28,7 +34,7 @@
 http.response
 ```
 
-能看到 `Transfer-Encoding: chunked` —— 说明**没有 Content-Length**，body 是一块一块发过来的。
+能看到 `Transfer-Encoding: chunked`，说明**没有 Content-Length**，body 是一块一块发过来的。
 
 ### Step 2｜跟着 TCP 流看
 
@@ -57,7 +63,7 @@ Wireshark 里可以右键 → Export Objects，或自己写二十行脚本。
 ## 三、为什么能成（原理）
 
 chunked 是 HTTP/1.1 的流式传输：服务器不知道总长度时，就一块块发，末尾用 0 长度收尾。
-初学者常在包里直接 `strings` 找，看到半截就以为没有 —— **必须把分块拆干净再拼**。
+初学者常在包里直接 `strings` 找，看到半截就以为没有，**必须把分块拆干净再拼**。
 另外这题故意让 TCP 段乱序加重传：**抓包顺序不等于真实顺序**，要按 seq 排。
 
 ## 四、怎么防（延伸）
@@ -78,3 +84,7 @@ python verify.py
 ```
 
 脚本会按上面的解法跑一遍并断言结果等于 `flag{chunk3d_4nd_r34553mbl3d}`。
+
+---
+
+

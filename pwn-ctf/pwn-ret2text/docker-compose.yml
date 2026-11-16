@@ -1,0 +1,10 @@
+services:
+  pwn-ret2text:
+    build: .
+    image: pwn-ret2text:latest
+    container_name: pwn-ret2text
+    ports:
+      - "9102:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

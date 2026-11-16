@@ -1,0 +1,2 @@
+# single byte xor with a one byte key; the plaintext is a flag, so byte 0 is 'f' (0x66)
+ciphertext = 0d070a0c100005041c05341b070a02051f0e131f3413041916

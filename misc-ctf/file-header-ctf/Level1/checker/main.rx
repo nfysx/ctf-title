@@ -13,7 +13,7 @@ pub fn check(bucket, user, team, submission) {
     if submission.content == FLAG {
         return Ok((true, "Correct!", None));
     }
-    Ok((false, "Incorrect!", None));
+    Ok((false, "Incorrect!", None))
 }
 
 pub async fn environ(bucket, user, team) {

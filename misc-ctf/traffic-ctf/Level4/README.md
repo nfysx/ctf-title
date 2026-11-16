@@ -20,11 +20,17 @@
 |---|---|
 | `files/capture.pcap` | 附件 |
 
+## 题面（直接复制到平台「简介」）
+
+`files/capture.pcap` 是一条自定义协议的通信，端口不是常见服务，载荷用文本工具看是乱码。目标：弄清这个协议怎么分帧、内容怎么编码，再解出 flag。
+
+**提示**：每一帧开头都有相同的几个字节，那通常是格式说明。
+
 ## 二、手把手解题
 
 ### Step 1｜别用 HTTP 视角看
 
-端口 9001，Follow TCP Stream 一看就是乱码 —— 不是文本协议。
+端口 9001，Follow TCP Stream 一看就是乱码，不是文本协议。
 
 ### Step 2｜找规律
 
@@ -32,7 +38,7 @@
 tshark -r files/capture.pcap -q -z follow,tcp,raw,1
 ```
 
-或者导出 raw 后 `xxd`：会反复看到 `49 54 4e 53`（ASCII 的 `ITNS`）—— 这是**魔数**，每一帧都从它开始。
+或者导出 raw 后 `xxd`：会反复看到 `49 54 4e 53`（ASCII 的 `ITNS`），这是**魔数**，每一帧都从它开始。
 
 ### Step 3｜猜帧结构
 
@@ -86,3 +92,7 @@ python verify.py
 ```
 
 脚本会按上面的解法跑一遍并断言结果等于 `flag{r3v3r53_th3_fr4m3}`。
+
+---
+
+

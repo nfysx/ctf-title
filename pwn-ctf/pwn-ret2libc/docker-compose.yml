@@ -1,0 +1,10 @@
+services:
+  pwn-ret2libc:
+    build: .
+    image: pwn-ret2libc:latest
+    container_name: pwn-ret2libc
+    ports:
+      - "9109:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

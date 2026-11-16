@@ -1,0 +1,10 @@
+services:
+  pwn-stack-check:
+    build: .
+    image: pwn-stack-check:latest
+    container_name: pwn-stack-check
+    ports:
+      - "9101:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

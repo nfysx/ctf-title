@@ -6,7 +6,7 @@ services:
   web:
     build: .
     ports:
-    - 8091:80
+    - 8091:8080
     environment:
     - FLAG=${FLAG:-}
     - TZ=Asia/Shanghai

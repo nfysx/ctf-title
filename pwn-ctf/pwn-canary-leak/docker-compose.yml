@@ -1,0 +1,10 @@
+services:
+  pwn-canary-leak:
+    build: .
+    image: pwn-canary-leak:latest
+    container_name: pwn-canary-leak
+    ports:
+      - "9108:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

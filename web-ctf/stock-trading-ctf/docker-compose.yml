@@ -1,0 +1,13 @@
+# 动态 flag 注入：
+#   平台/运维执行  FLAG='flag{xxx}' docker compose up -d  即可注入；
+#   不设则用 src/flag.inc.php 里的内置默认值
+# 容器内监听 8080（见 Dockerfile），宿主机映射 8093。
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+    - 8093:8080
+    environment:
+    - FLAG=${FLAG:-}
+    - TZ=Asia/Shanghai

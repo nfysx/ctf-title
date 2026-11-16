@@ -3,6 +3,9 @@ import io, os, struct, sys, tempfile
 from PIL import Image
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 兼容放在 exp/ 下的情况：本层没有 files/ 就退回上一层
+if not os.path.isdir(os.path.join(HERE, "files")):
+    HERE = os.path.dirname(HERE)
 raw = open(os.path.join(HERE, "files", "马赛克.jpg"), "rb").read()
 i = raw.find(b"Exif\x00\x00")
 assert i > 0, "没有 EXIF"

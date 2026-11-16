@@ -1,0 +1,10 @@
+services:
+  pwn-fmt-write:
+    build: .
+    image: pwn-fmt-write:latest
+    container_name: pwn-fmt-write
+    ports:
+      - "9107:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

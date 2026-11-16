@@ -2,6 +2,9 @@
 import io, os, sys, zipfile
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 兼容放在 exp/ 下的情况：本层没有 files/ 就退回上一层
+if not os.path.isdir(os.path.join(HERE, "files")):
+    HERE = os.path.dirname(HERE)
 EXPECT = "flag{dr4g_1t_1nt0_7z1p}"
 data = open(os.path.join(HERE, "files", "风景.png"), "rb").read()
 iend = data.find(b"IEND")

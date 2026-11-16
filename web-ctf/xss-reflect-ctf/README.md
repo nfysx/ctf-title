@@ -12,12 +12,20 @@
 | Flag 格式 | `flag{...}` |
 
 一句话：`name` 参数被原样拼进 HTML，所以你能让它执行 JS；
-但 Cookie 里**没有 flag**，只有一个服务端签发的会话标识 `sid` ——
+但 Cookie 里**没有 flag**，只有一个服务端签发的会话标识 `sid`，
 得让页面里的 `claim()` 拿它去换 flag。
+
+## 题面（直接复制到平台「简介」）
+
+一个会把你的名字回显到页面里的站点，还提供一个领 flag 的接口。
+你以普通访客身份进来，Cookie 里只有一个服务端签发的会话标识。
+目标是让页面里的脚本替你完成领 flag 的那次请求：浏览器打开 http://<地址>:8081/ 。
+
+**提示**：回显点就是注入点；领 flag 的接口要求请求由页面自己发起，直接在地址栏敲不算。
 
 ## 二、启动环境
 
-> ⚠️ **Windows PowerShell 5.1 用户注意**：`curl` 在那里是 `Invoke-WebRequest` 的别名，
+> **Windows PowerShell 5.1 用户注意**：`curl` 在那里是 `Invoke-WebRequest` 的别名，
 > 敲 `curl -H "A: B"` 会报「无法绑定参数 Headers」。请改用 **`curl.exe`**（Windows 10 1803+ 自带）。
 > 完整命令对照表见总 README 的「**在 Windows 上怎么敲这些命令**」一节。
 
@@ -53,14 +61,14 @@ $greeting = '<pre>' . $_GET['name'] . ' 不是你的名字</pre>';
 sid = 094a563e107488a6d3f2e63c1af1e163f9234e5b6d2390d6a8d102f58ccbad20
 ```
 
-**只有一串 64 位十六进制，没有 flag** —— 它不是 base64(flag)，
+**只有一串 64 位十六进制，没有 flag**，它不是 base64(flag)，
 你把它 base64 解码、反转、hash 都出不来 flag。
 
 这就引出本题真正的考点：**偷到凭据 ≠ 拿到东西**，凭据得拿去用。
 
 页面底部的提示也写了：
 
-> 你的会话标识 `sid` 就在 Cookie 里 —— 但它本身只是一串随机数，换不到任何东西。
+> 你的会话标识 `sid` 就在 Cookie 里，但它本身只是一串随机数，换不到任何东西。
 > 页面里藏了个 `claim()` 函数，它懂得拿 sid 去服务端领东西。
 
 ### Step 3｜让 claim() 跑起来
@@ -86,7 +94,7 @@ claim()        // 控制台直接敲也能看到 flag
 
 你可能想：既然 sid 在 Cookie 里，那我手动打开 `/claim.php?sid=<抄来的 sid>` 不就行了？
 
-试试 —— 会被拒：
+试试，会被拒：
 
 ```
 这个地址不能直接打开 —— 得让页面里的 claim() 帮你请求
@@ -101,7 +109,7 @@ claim()        // 控制台直接敲也能看到 flag
 | 必须带 `Referer`（从页面发起） | **在地址栏直接敲过不了** |
 
 所以「F12 抄 Cookie → 粘贴到地址栏」这条捷径走不通，
-你必须让浏览器**真的执行一次 JS** —— 这就是 XSS。
+你必须让浏览器**真的执行一次 JS**，这就是 XSS。
 
 ## 四、为什么能成（原理）
 
@@ -111,7 +119,7 @@ claim()        // 控制台直接敲也能看到 flag
 <pre><script>claim()</script> 不是你的名字</pre>
 ```
 
-浏览器解析到 `<script>` 就执行 —— 数据变成了代码。这类漏洞叫 **反射型 XSS**：
+浏览器解析到 `<script>` 就执行，数据变成了代码。这类漏洞叫 **反射型 XSS**：
 payload 在 URL 里、**不持久化**，必须骗受害者点你的链接才会中招。
 
 本题的第二层设计是「凭据无害化」：
@@ -130,7 +138,7 @@ Cookie 里：sid        —— 服务端签发、HMAC 签名、与 flag 无关
 
 - 输出到 HTML 时按上下文转义：`htmlspecialchars($s, ENT_QUOTES, 'UTF-8')`
 - 加 `Content-Security-Policy`（禁 inline script）
-- **Cookie 加 `HttpOnly`** —— 这一步能让 JS 完全读不到 sid，是最直接的止血
+- **Cookie 加 `HttpOnly`**：这一步能让 JS 完全读不到 sid，是最直接的止血
   （注意：`HttpOnly` 挡的是 JS，**挡不住 F12 的 Cookies 面板**；本题故意没用它来代替题目设计）
 - 会话标识要能**服务端作废**；换 flag 这类操作要有 CSRF token + 二次确认
 
@@ -151,3 +159,25 @@ curl.exe -i http://127.0.0.1:8081/claim.php
 ```bash
 FLAG=flag{your-dynamic-flag} docker compose up -d
 ```
+
+---
+
+## 平台镜像配置（添加镜像时照这张表填）
+
+| 字段 | 填什么 | 说明 |
+|---|---|---|
+| 容器名称 | `xss-reflect-ctf` | 与题目目录名、tar 文件名保持一致 |
+| 镜像标签 | `<registry>/<bucket>/xss-reflect-ctf` | 仓库名取自 tar 文件名（去扩展名），上传后 UI 自动带出 |
+| 镜像版本 | 上传后生成的 Unix 时间戳 | 下拉选最新那条，不要手填 |
+| 镜像拉取策略 | `Always` | 与平台默认一致 |
+| 服务描述 | HTTP 站点（浏览器访问） | 只是备注，不影响运行 |
+| 传输协议 | `tcp` | 全库只有 TCP 服务 |
+| 应用协议 | `http` | HTTP 站点选 http |
+| **服务端口** | **`8080`** | 容器内实际监听端口，必须与 Dockerfile 的 `EXPOSE` 一致 |
+| CPU 限制 | `0.1, 0.5` | 最小, 最大（核） |
+| 内存限制（MB） | `32, 128` | 最小, 最大 |
+| 存储限制（MB） | `64, 1024` | 最小, 最大 |
+| restricted | **勾选** | 平台会 drop `NET_BIND_SERVICE`，所以容器监听的是 `8080` 而不是 80 |
+| 出网 | **关闭** | 本题不需要外网 |
+
+> 端口必须填 **8080**。历史上按 80 填过的记录要改过来：容器里 Apache 已改成 `Listen 8080`，填 80 会连不上。

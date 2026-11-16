@@ -1,0 +1,13 @@
+[crypto-lesson-encoding]
+
+下面三段数据各用了一种编码。哪一段是哪种编码自己判断：
+
+SEG1
+ZmxhZ3tlbmNvZGluZ19pc18=
+
+SEG2
+6e6f745f
+
+SEG3
+%65%6e%63%72%79%70%74%69%6f%6e%7d
+

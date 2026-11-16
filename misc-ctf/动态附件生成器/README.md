@@ -31,7 +31,7 @@ pub async fn get_mapped_file(&self, requested_id: i64) -> Result<Option<String>,
 | 3 | 条目是**普通文件**，不要求 zip | 单附件题直接传变体文件即可 |
 | 4 | 份数少于人数会**循环复用** | 30 人赛建议 ≥32 份 |
 
-> ⚠ **文件名必须纯 ASCII**：平台上传时会重写名字（`crates/bucket/src/challenge.rs` 的 `to_file_name`）
+> **文件名必须纯 ASCII**：平台上传时会重写名字（`crates/bucket/src/challenge.rs` 的 `to_file_name`）
 >
 > ```rust
 > deunicode_with_tofu(file, "_")   // 中文转拼音：作业 → "Zuo Ye"
@@ -45,7 +45,7 @@ pub async fn get_mapped_file(&self, requested_id: i64) -> Result<Option<String>,
 > 本工具已强制用 ASCII 条目名（`zuoye-01.jpg`、`0001.zip`），并在生成后检查一遍：
 > 哪个名字会被平台改名就报警。
 
-> ⚠ **通过 git 同步时**：模版里 `mapped/README.md` 不是隐藏文件，会被算成一个可分配条目
+> **通过 git 同步时**：模版里 `mapped/README.md` 不是隐藏文件，会被算成一个可分配条目
 > （有人会拿到 README.md，然后提示 "Could not find you flag mapping"）。
 > 上传动态附件前把它删掉；`.gitkeep` 是隐藏文件，**要保留**。
 
@@ -162,7 +162,7 @@ python variant_inputs.py all 4
 | `hongyadong` | Level3 游客照 | 地标 + 拍摄日期时刻 | `flag{城市_建筑_本地日期_UTC时刻}` |
 | `route` | Level5 路线复现 | 三座**不同**城市 + 打乱拍摄时间 | `flag{起_中_终}`（按时间排序） |
 
-Level4（三层线索）没做 —— 现在只有南京东路一套素材，变体化需要多套不同街道的照片。
+Level4（三层线索）没做：现在只有南京东路一套素材，变体化需要多套不同街道的照片。
 
 ## 地标库
 
@@ -218,7 +218,7 @@ out/<类型>-variant/
 - **多附件题**（gps / route）→ 自动打成 zip（平台每人只能拿一个条目）
 
 `题面.md` 单独放，是因为平台的题面走 `README.md` / `set_description`，
-不该混进附件里 —— 这样「附件数」也算得准。
+不该混进附件里，这样「附件数」也算得准。
 
 ## 已知取舍
 

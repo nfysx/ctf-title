@@ -1,0 +1,23 @@
+// checker/main.rx · teach-demo（MoeCTF 逆向教学指北 · RE.Tutorial.exe）
+//
+// ret2shell 评测脚本：静态 flag 版本（附件型题目，无容器）。
+//   check   —— 比对选手提交的 flag
+//   environ —— 附件型题目没有容器，返回空对象
+//
+// flag 出处（附件本体可提取，已实测）：
+//   RE.Tutorial.exe 内嵌内容包 -> assets/i18n/zh-CN.json -> "final.flag"
+//   同一份内容也在 RETutor\Content.zip 与 _src\MoeCTF.RE.Tutorial.Host.BundledContent.zip 里
+//   文案原文："你已经完成入门路线。把最终 flag 提交到比赛平台。"
+//   注意：本题 flag 前缀是 moectf{...}（不是 flag{...}），按原样判题，未改附件。
+const FLAG = "moectf{c0ngrats_y0u_l34rn3d_r3v3rs3}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None))
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

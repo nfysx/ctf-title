@@ -1,0 +1,9 @@
+services:
+  crypto-aes-ecb-reorder:
+    build: .
+    image: crypto-aes-ecb-reorder:latest
+    ports:
+      - 9201:1337
+    environment:
+      - FLAG=${FLAG}
+    restart: unless-stopped

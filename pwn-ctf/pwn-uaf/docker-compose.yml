@@ -1,0 +1,10 @@
+services:
+  pwn-uaf:
+    build: .
+    image: pwn-uaf:latest
+    container_name: pwn-uaf
+    ports:
+      - "9110:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

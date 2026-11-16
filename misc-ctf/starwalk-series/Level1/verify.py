@@ -4,6 +4,9 @@ import datetime, os, sys
 from PIL import Image
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 兼容放在 exp/ 下的情况：本层没有 files/ 就退回上一层
+if not os.path.isdir(os.path.join(HERE, "files")):
+    HERE = os.path.dirname(HERE)
 EXPECT = "flag{beijing_xiaomi_0926}"
 
 ex = Image.open(os.path.join(HERE, "files", "photo.jpg")).getexif()

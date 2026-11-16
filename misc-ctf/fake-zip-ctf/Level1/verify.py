@@ -3,6 +3,9 @@
 import os, sys, zipfile
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 兼容放在 exp/ 下的情况：本层没有 files/ 就退回上一层
+if not os.path.isdir(os.path.join(HERE, "files")):
+    HERE = os.path.dirname(HERE)
 EXPECT = "flag{c0mm3n7_15_4_f13ld}"
 z = zipfile.ZipFile(os.path.join(HERE, "files", "handin.zip"))
 comment = z.comment.decode("utf-8")

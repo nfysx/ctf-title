@@ -20,6 +20,12 @@
 |---|---|
 | `files/photo.jpg` | 附件 |
 
+## 题面（直接复制到平台「简介」）
+
+一张从网上存下来的 `files/photo.jpg`，拍摄者的信息还留在文件里。目标：画面和像素都没有动过手脚，flag 写在文件自己携带的信息里。
+
+**提示**：有些字段不是给人看的，是给软件读的。
+
 ## 二、手把手解题
 
 ### Step 1｜先看元数据
@@ -34,7 +40,7 @@ exiftool files/photo.jpg
 
 ### Step 2｜认出 base64
 
-结尾的 `=`、只有字母数字和 `+/` —— 直接解码：
+结尾的 `=`、只有字母数字和 `+/`，直接解码：
 
 ```bash
 python -c "import base64;print(base64.b64decode('ZmxhZ3ttM3Q0ZDR0NF90NGxrcyE=').decode())"
@@ -42,13 +48,13 @@ python -c "import base64;print(base64.b64decode('ZmxhZ3ttM3Q0ZDR0NF90NGxrcyE=').
 
 ### Step 3｜注意干扰项
 
-`UserComment` 里写着 `nothing here, keep looking` —— 别被它带跑。
+`UserComment` 里写着 `nothing here, keep looking`，别被它带跑。
 
 
 ## 三、为什么能成（原理）
 
 JPEG 的 EXIF 是**相机/软件自动写入**的信息：机型、时间、甚至 GPS 坐标。
-上传图片时不清理元数据，等于把拍摄地点和时间一起交出去 —— 这正是 p10 讲的那条：
+上传图片时不清理元数据，等于把拍摄地点和时间一起交出去，这正是 p10 讲的那条：
 「你发出去的每张照片，都在替你说出位置」。
 
 ## 四、怎么防（延伸）
@@ -70,3 +76,7 @@ python verify.py
 ```
 
 脚本会按上面的解法跑一遍并断言结果等于 `flag{m3t4d4t4_t4lks}`。
+
+---
+
+

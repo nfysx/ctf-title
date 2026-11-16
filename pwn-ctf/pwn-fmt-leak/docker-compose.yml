@@ -1,0 +1,10 @@
+services:
+  pwn-fmt-leak:
+    build: .
+    image: pwn-fmt-leak:latest
+    container_name: pwn-fmt-leak
+    ports:
+      - "9103:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

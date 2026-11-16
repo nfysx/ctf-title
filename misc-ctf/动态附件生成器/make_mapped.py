@@ -40,6 +40,14 @@ import make_challenges as CH                     # noqa: E402
 import make_live_demo as LD                      # noqa: E402
 import variant_inputs as VI                      # noqa: E402  C 版引擎
 
+# 扩展 builder：RE 的 ELF 重编译、以及 misc 后来新增的 6 道
+for _mod in ("builders_extra", "builders_re"):
+    try:
+        _m = __import__(_mod)
+        CH.BUILDERS.update(_m.BUILDERS)
+    except ImportError:
+        pass
+
 OUT = os.path.join(TOOLS, "out")
 DEFAULT_N = 16
 
@@ -80,6 +88,72 @@ def platform_safe(name):
 
 
 # ---------------------------------------------------------------------------
+CATS = ("start-ctf", "web-ctf", "pwn-ctf", "crypto-ctf", "misc-ctf", "RE-ctf")
+
+
+def _flag_from_checker(repo, key):
+    """从题目目录的 checker 里取静态 flag。
+
+    注意：启用动态附件后 checker/main.rx 已被换成 mapped.rx（没有 FLAG 常量），
+    因此要按 main.rx → main.static.rx → flag.json 的顺序找。
+    """
+    import re as _re
+    for cat in CATS:
+        d = os.path.join(repo, cat, key, "checker")
+        for fn in ("main.rx", "main.static.rx"):
+            p = os.path.join(d, fn)
+            if not os.path.exists(p):
+                continue
+            m = _re.search(r'const FLAG = "([^"]+)"', open(p, encoding="utf-8").read())
+            if m:
+                return m.group(1)
+        # 最后兜底：flag.json 里任取一条（去掉变体后缀）
+        p = os.path.join(d, "flag.json")
+        if os.path.exists(p):
+            try:
+                v = next(iter(json.load(open(p, encoding="utf-8")).values()))
+                return _re.sub(r"_[0-9a-f]{5}\}$", "}", v)
+            except Exception:
+                pass
+    return None
+
+
+def _extra_items():
+    """builders_extra / builders_re 里登记的、不在 challenges.json 中的题。"""
+    repo = os.path.dirname(MC)
+    out = {}
+    for modname in ("builders_extra", "builders_re"):
+        try:
+            m = __import__(modname)
+        except ImportError:
+            continue
+        statics = dict(getattr(m, "STATIC_FLAGS", {}) or {})
+        for key in getattr(m, "BUILDERS", {}):
+            if key not in statics:
+                f = _flag_from_checker(repo, key)
+                if f:
+                    statics[key] = f
+        for key, flag in statics.items():
+            d = None
+            for cat in CATS:
+                p = os.path.join(repo, cat, key)
+                if os.path.isdir(p):
+                    d = p
+                    break
+            if d is None:
+                continue
+            title = key
+            rp = os.path.join(d, "README.md")
+            if os.path.exists(rp):
+                import re as _re
+                mm = _re.search(r"^#\s+(.+)$", open(rp, encoding="utf-8").read(), _re.M)
+                if mm:
+                    title = _re.sub(r"^题解[：:]\s*", "", mm.group(1)).strip()
+            out[key] = dict(kind="challenge", key=key, flag=flag, title=title,
+                            cfg={"path": key, "dir": d})
+    return out
+
+
 def catalog():
     items = {}
     meta = json.load(open(os.path.join(BUILD, "challenges.json"), encoding="utf-8"))
@@ -90,6 +164,8 @@ def catalog():
         items.setdefault(k, rec)
     for key, title, flag, _m in LD.ORDER:
         items[key] = dict(kind="demo", key=key, flag=flag, title=title, cfg=None)
+    for key, rec in _extra_items().items():
+        items.setdefault(key, rec)
     return items
 
 
@@ -255,6 +331,12 @@ def probe_file(p, flag):
                     return "%s %s" % (label, os.path.basename(p))
         except Exception:
             pass
+    # 兜底：任意二进制里直接扫 flag 明文（自定义容器、.bin、未知扩展名）
+    try:
+        if flag.encode() in open(p, "rb").read():
+            return "明文出现 " + os.path.basename(p)
+    except OSError:
+        pass
     return None
 
 
@@ -274,8 +356,29 @@ def verify_pack(out, label):
         p = os.path.join(md, n)
         if n.lower().endswith(".zip"):
             with tempfile.TemporaryDirectory() as tmp:
-                zipfile.ZipFile(p).extractall(tmp)
-                how = next((h for h in (probe_file(q, flag_map[n]) for q in collect_files(tmp)) if h), None)
+                dst = os.path.join(tmp, "ext")
+                os.makedirs(dst, exist_ok=True)
+                try:
+                    zipfile.ZipFile(p).extractall(dst)
+                except RuntimeError:
+                    # 伪加密：加密位是人为设的，数据本身没加密。
+                    # 把本地头(0x04034b50, 偏移 6)与中央目录(0x02014b50, 偏移 8)的 bit0 清零再解，
+                    # 这正好是这类题的标准解法。
+                    raw = bytearray(open(p, "rb").read())
+                    for sig, off in ((b"PK\x03\x04", 6), (b"PK\x01\x02", 8)):
+                        idx = 0
+                        while True:
+                            idx = raw.find(sig, idx)
+                            if idx < 0:
+                                break
+                            v = int.from_bytes(raw[idx + off:idx + off + 2], "little") & ~1
+                            raw[idx + off:idx + off + 2] = v.to_bytes(2, "little")
+                            idx += 4
+                    fixed = os.path.join(tmp, "_fixed.zip")
+                    open(fixed, "wb").write(bytes(raw))
+                    zipfile.ZipFile(fixed).extractall(dst)
+                    print("      （%s 是伪加密，已清零加密位后解开）" % n)
+                how = next((h for h in (probe_file(q, flag_map[n]) for q in collect_files(dst)) if h), None)
         else:
             how = probe_file(p, flag_map[n])
         if how:

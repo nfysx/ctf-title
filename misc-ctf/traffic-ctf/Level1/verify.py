@@ -3,6 +3,9 @@
 import base64, os, re, struct, sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 兼容放在 exp/ 下的情况：本层没有 files/ 就退回上一层
+if not os.path.isdir(os.path.join(HERE, "files")):
+    HERE = os.path.dirname(HERE)
 EXPECT = "flag{pcap_n3v3r_l13s}"
 data = open(os.path.join(HERE, "files", "capture.pcap"), "rb").read()
 magic = struct.unpack_from("<I", data, 0)[0]

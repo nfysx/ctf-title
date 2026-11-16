@@ -3,6 +3,9 @@
 import base64, os, re, sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 兼容放在 exp/ 下的情况：本层没有 files/ 就退回上一层
+if not os.path.isdir(os.path.join(HERE, "files")):
+    HERE = os.path.dirname(HERE)
 EXPECT = "flag{b4s364_15_ju57_4_5t3p}"
 raw = open(os.path.join(HERE, "files", "readme.txt"), encoding="utf-8-sig").read()
 blob = max(re.findall(r"[A-Za-z0-9+/=]{20,}", raw), key=len)

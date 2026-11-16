@@ -1,0 +1,18 @@
+// checker/main.rx · crypto-rsa-common-modulus
+//
+// ret2shell 评测脚本：静态 flag 版本（附件型题目，无容器）。
+//   check   —— 比对选手提交的 flag
+//   environ —— 没有容器，返回空对象
+
+const FLAG = "flag{rsa_common_modulus_attack}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None))
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

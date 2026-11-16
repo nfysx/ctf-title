@@ -1,0 +1,15 @@
+// checker/main.rx · pwn-hello-tools
+// 静态 flag 版本：附件型题目没有容器，environ 返回空对象。
+
+const FLAG = "flag{file_checksec_strings_objdump}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None))
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

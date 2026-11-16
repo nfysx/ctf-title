@@ -11,17 +11,23 @@ for d in sorted(os.listdir(ROOT)):
     p = os.path.join(ROOT, d)
     if not os.path.isdir(p):
         continue
-    if os.path.exists(os.path.join(p, "verify.py")):
+    def has_verify(base):                   # 根目录或 exp/ 下都算
+        return os.path.exists(os.path.join(base, "verify.py")) or \
+               os.path.exists(os.path.join(base, "exp", "verify.py"))
+    if has_verify(p):
         names.append(d)
     else:                                   # 系列子目录
         for sub in sorted(os.listdir(p)):
             sp = os.path.join(p, sub)
-            if os.path.isdir(sp) and os.path.exists(os.path.join(sp, "verify.py")):
+            if os.path.isdir(sp) and has_verify(sp):
                 names.append("%s/%s" % (d, sub))
 ok = 0
 for n in names:
     print("== %s" % n)
-    r = subprocess.run([PY, os.path.join(ROOT, n, "verify.py")],
+    vp = os.path.join(ROOT, n, "verify.py")
+    if not os.path.exists(vp):
+        vp = os.path.join(ROOT, n, "exp", "verify.py")
+    r = subprocess.run([PY, vp],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
     out = (r.stdout or "") + (r.stderr or "")
     for line in out.strip().splitlines():

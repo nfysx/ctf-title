@@ -1,0 +1,14 @@
+// checker/main.rx · web-hello-source（查看网页源码入门）
+// 静态 flag 版本：check 比对提交内容，environ 返回空对象（附件型题目没有容器）
+const FLAG = "flag{view_source_is_the_first_move}";
+
+pub fn check(bucket, user, team, submission) {
+    if submission.content == FLAG {
+        return Ok((true, "Correct!", None));
+    }
+    Ok((false, "Incorrect!", None))
+}
+
+pub async fn environ(bucket, user, team) {
+    Ok(#{})
+}

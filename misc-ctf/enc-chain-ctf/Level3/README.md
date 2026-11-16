@@ -20,6 +20,12 @@
 |---|---|
 | `files/readme.txt` | 附件 |
 
+## 题面（直接复制到平台「简介」）
+
+`files/readme.txt` 里是一段更长的串，剥掉一层不会到底。每剥一层字符集会变一次，下一次用什么工具由新的字符集决定。目标：把 flag 取出来。
+
+**提示**：遇到可读但意思不对的英文，先别怀疑自己算错。
+
 ## 二、手把手解题
 
 ### Step 1｜先看字符集
@@ -30,7 +36,7 @@
 看起来像这样：TjNkMWJqTXdNak0zTkRrME1UTTVPVEk1T1M0eE5ERTBPVGd1TVRZNU1USTVMakUyT1RFeU5UUTVMakV6TVRrek5qUTVMakV6TVRrek5qUTVMakV6TVRrek5qUTVMakV6TVRrek5qUTVM...
 ```
 
-只有大小写字母和数字、长度是 4 的倍数、结尾可能有 `=` —— 这些特征指向 **base64**。
+只有大小写字母和数字、长度是 4 的倍数、结尾可能有 `=`，这些特征指向 **base64**。
 
 ### Step 2｜第一层：base64
 
@@ -38,7 +44,7 @@
 python -c "import base64,sys;print(base64.b64decode(open('readme.txt',encoding='utf-8-sig').read().split('下面是题目给的全部内容：')[1].split('提示')[0].strip()).decode())"
 ```
 
-结果是一串 **全是 0-9a-f 的十六进制** —— 下一层是 hex。
+结果是一串 **全是 0-9a-f 的十六进制**，下一层是 hex。
 
 ### Step 3｜第二层：十六进制
 
@@ -46,7 +52,7 @@ python -c "import base64,sys;print(base64.b64decode(open('readme.txt',encoding='
 python -c "print(bytes.fromhex('<上一步的结果>').decode())"
 ```
 
-结果是一段能读的英文，但单词是乱的：`syn0q1at` 这种 —— 典型 **ROT13**。
+结果是一段能读的英文，但单词是乱的：`syn0q1at` 这种，典型 **ROT13**。
 
 ### Step 4｜第三层：ROT13
 
@@ -60,7 +66,7 @@ python -c "import codecs;print(codecs.decode('<上一步的结果>','rot13'))"
 ## 三、为什么能成（原理）
 
 每一层都是**可逆的编码**，没有密钥：base64 只是换字符集、hex 只是换进制、ROT13 只是字母位移 13 位。
-所以「看到乱码先别慌」—— 先看字符集判断是哪一类编码，再决定用哪个工具拆。
+所以「看到乱码先别慌」，先看字符集判断是哪一类编码，再决定用哪个工具拆。
 
 ## 四、怎么防（延伸）
 
@@ -81,3 +87,7 @@ python verify.py
 ```
 
 脚本会按上面的解法跑一遍并断言结果等于 `flag{3nc0d1ng_1s_n0t_3ncrypt10n}`。
+
+---
+
+

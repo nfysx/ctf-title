@@ -21,6 +21,12 @@
 | `files/before.jpg` | 附件 |
 | `files/after.jpg` | 附件 |
 
+## 题面（直接复制到平台「简介」）
+
+运维同学「清理」了一张照片的元数据，前后各留了一份：`files/before.jpg` 和 `files/after.jpg`。目标：弄清清理到底删掉了什么、又留下了什么，flag 在两份文件的差异里。
+
+**提示**：体积变小不等于内容变干净，被删掉的那一段本身也是信息。
+
 ## 二、手把手解题
 
 ### Step 1｜先对比两张图
@@ -30,7 +36,7 @@ ls -l files/before.jpg files/after.jpg
 cmp -l files/before.jpg files/after.jpg | head
 ```
 
-`after.jpg` 比 `before.jpg` **小了一百多字节** —— 少的就是那段 EXIF。
+`after.jpg` 比 `before.jpg` **小了一百多字节**，少的就是那段 EXIF。
 
 ### Step 2｜看 APP1 段结构
 
@@ -68,7 +74,7 @@ open('inner.zip','wb').write(blk[off:])
 
 ## 三、为什么能成（原理）
 
-APP1 段只规定了「长度 + 开头是 Exif 标记」，**中间的字节没有任何强制含义** ——
+APP1 段只规定了「长度 + 开头是 Exif 标记」，**中间的字节没有任何强制含义**，
 所以只要长度字段写对，就能在里面塞任意数据：ZIP、文本、甚至另一张图。
 抹除 EXIF 工具的做法是「整段丢掉」，于是这些私货跟着一起消失（对比 `after.jpg`）。
 
@@ -77,7 +83,7 @@ APP1 段只规定了「长度 + 开头是 Exif 标记」，**中间的字节没�
 ## 四、怎么防（延伸）
 
 收到可疑图片：先 `exiftool -b -all:all` 或按 APP1 段 dump 备份，再做处理。
-自己做「抹除」时，也不要以为「清掉 EXIF 就等于清干净」——
+自己做「抹除」时，也不要以为「清掉 EXIF 就等于清干净」：
 附加数据（p33）、缩略图（上一题）、LSB（p14）都不在 EXIF 里。
 
 ## 五、平台接入（ret2shell）
@@ -94,3 +100,7 @@ python verify.py
 ```
 
 脚本会按上面的解法跑一遍并断言结果等于 `flag{3r4s3_3xif_4ft3r_dump}`。
+
+---
+
+

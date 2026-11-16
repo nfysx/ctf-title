@@ -1,0 +1,31 @@
+================ 迎新赛 · 赛前须知（节选） ================
+
+一、flag 的形式
+
+  本场所有题目的答案都写成 flag{...}：
+    · 前缀必须是全小写的四个字母 flag
+    · 紧接一个半角左花括号 {，中间不允许有空格
+    · 括号内只允许小写英文字母、数字和下划线
+    · 以半角右花括号 } 收尾，括号内首尾都不允许有空格
+
+  平台做的是**逐字节比较**：多一个空格、错一个大小写、用了全角括号，
+  都会判错，而且不会告诉你错在哪。
+
+二、下面这些是往年真实出现过的提交，全部被系统拒收
+
+  FLAG{case_does_not_match}
+  flag {space_before_brace}
+  flag（full_width_brace）
+  flag{trailing_space_inside }
+  flag{has-hyphen}
+
+三、本场第 0 题
+
+  下面六条里只有一条符合第一节的全部规则，把它原样提交上来：
+
+  FLAG{case_does_not_match}
+  flag {space_before_brace}
+  flag（full_width_brace）
+  flag{trailing_space_inside }
+  flag{has-hyphen}
+  flag{you_read_the_rules_before_playing}

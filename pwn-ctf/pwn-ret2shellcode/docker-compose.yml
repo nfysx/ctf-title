@@ -1,0 +1,10 @@
+services:
+  pwn-ret2shellcode:
+    build: .
+    image: pwn-ret2shellcode:latest
+    container_name: pwn-ret2shellcode
+    ports:
+      - "9106:1337"
+    environment:
+      - FLAG=flag{local_default}
+    restart: unless-stopped

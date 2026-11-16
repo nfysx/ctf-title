@@ -9,8 +9,7 @@ h1{margin-top:0;font-size:22px;color:#89b4fa}code{background:#1e1e2e;padding:2px
 p{line-height:1.7}</style></head>
 <body><div class="card">
 <h1>秘密档案室</h1>
-<p>这里的资料不对外公开。</p>
-<p>但管理员太懒了，总有些东西忘了藏好。</p>
+<p>此处不对外公开。</p>
 <hr>
 <p style="opacity:.6">tips：搜索引擎和爬虫都会先读一个文件，试着找到它吧。</p>
 </div></body></html>
